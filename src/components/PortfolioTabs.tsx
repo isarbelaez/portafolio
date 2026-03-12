@@ -5,7 +5,13 @@ import { habilidades, proyectosU, proyectosPago, proyectosOtros } from '../data/
 import { ProjectCard, ProjectModal } from './ProjectComponents';
 import { SmoothScrollContainer } from './SmoothScrollContainer';
 
-function TabButton({ children, active, onClick }) {
+interface TabButtonProps {
+  children: React.ReactNode;
+  active: boolean;
+  onClick: () => void;
+}
+
+function TabButton({ children, active, onClick }: TabButtonProps) {
   return (
     <button
       onClick={onClick}
@@ -18,7 +24,13 @@ function TabButton({ children, active, onClick }) {
   );
 }
 
-function SubTab({ children, active, onClick }) {
+interface SubTabProps {
+  children: React.ReactNode;
+  active: boolean;
+  onClick: () => void;
+}
+
+function SubTab({ children, active, onClick }: SubTabProps) {
   return (
     <button
       onClick={onClick}
@@ -32,10 +44,10 @@ function SubTab({ children, active, onClick }) {
 }
 
 export default function PortfolioTabs() {
-  const [activeTab, setActiveTab] = useState('habilidades');
-  const [subTabU, setSubTabU] = useState('marketing');
-  const [subTabPago, setSubTabPago] = useState('ia');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [activeTab, setActiveTab] = useState<string>('habilidades');
+  const [subTabU, setSubTabU] = useState<'marketing' | 'automatizacion'>('marketing');
+  const [subTabPago, setSubTabPago] = useState<'ia' | 'marketing'>('ia');
+  const [selectedProject, setSelectedProject] = useState<any | null>(null);
 
   return (
     <>

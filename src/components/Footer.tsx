@@ -6,9 +6,28 @@ export default function Footer() {
       <div className="border-t border-[#EFEBE1] pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[#A1887F]">
         <p>© {new Date().getFullYear()} Isabella Arbelaez — Todos los derechos reservados.</p>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-[#6F4E37] transition-colors">LinkedIn</a>
-          <a href="#" className="hover:text-[#6F4E37] transition-colors">GitHub</a>
-          <a href="#" className="hover:text-[#6F4E37] transition-colors">Email</a>
+          <a 
+            href="http://www.linkedin.com/in/isabellaarbelaez" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="hover:text-[#6F4E37] transition-colors"
+          >
+            LinkedIn
+          </a>
+          <a 
+            href="https://github.com/isarbelaez" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="hover:text-[#6F4E37] transition-colors"
+          >
+            GitHub
+          </a>
+          <a 
+            href="mailto:arbelaeztapias0108@gmail.com" 
+            className="hover:text-[#6F4E37] transition-colors"
+          >
+            Email
+          </a>
         </div>
       </div>
     </footer>
