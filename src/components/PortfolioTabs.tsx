@@ -43,11 +43,11 @@ export default function PortfolioTabs() {
         <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-sm border border-[#EFEBE1] p-6 md:p-8">
           
           {/* TABS PRINCIPALES */}
-          <div className="flex flex-col sm:flex-row gap-2 mb-10 p-1.5 bg-[#FDFBF7] rounded-2xl border border-[#EFEBE1]">
+          <div className="flex flex-row overflow-x-auto hide-scrollbar gap-2 mb-10 p-1.5 bg-[#FDFBF7] rounded-2xl border border-[#EFEBE1]">
             <TabButton active={activeTab === 'habilidades'} onClick={() => setActiveTab('habilidades')}>Habilidades</TabButton>
             <TabButton active={activeTab === 'proyectosU'} onClick={() => setActiveTab('proyectosU')}>Proyectos U</TabButton>
             <TabButton active={activeTab === 'proyectosPago'} onClick={() => setActiveTab('proyectosPago')}>Proyectos Pago</TabButton>
-            <TabButton active={activeTab === 'otros'} onClick={() => setActiveTab('otros')}>Video / MVP</TabButton>
+            <TabButton active={activeTab === 'otros'} onClick={() => setActiveTab('otros')}>Video/MVP</TabButton>
           </div>
 
           <AnimatePresence mode="wait">

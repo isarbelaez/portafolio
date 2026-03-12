@@ -26,7 +26,7 @@ export default function Header() {
           className="text-4xl md:text-6xl font-light tracking-tight text-[#2D1A11]"
         >
           Hola, soy{' '}
-          <span className="font-semibold bg-gradient-to-r from-[#6F4E37] to-[#A1887F] bg-clip-text text-transparent">
+          <span className="font-semibold bg-gradient-to-r from-[#6F4E37] to-[#A1887F] bg-clip-text text-transparent inline-block">
             Isabella
           </span>
         </motion.h1>
@@ -34,7 +34,7 @@ export default function Header() {
           initial={{ opacity: 0, y: 10 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="text-lg text-[#8D6E63] font-light leading-relaxed max-w-2xl"
+          className="text-lg text-[#8D6E63] font-light leading-relaxed max-w-2xl px-4 md:px-0"
         >
           Estratega de{' '}
           <strong className="font-medium text-[#5D4037]">
@@ -46,13 +46,13 @@ export default function Header() {
           initial={{ opacity: 0, y: 10 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="flex gap-4 justify-center md:justify-start"
+          className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start px-8 sm:px-0"
         >
-          <button className="group px-6 py-3 bg-gradient-to-r from-[#6F4E37] to-[#8D6E63] text-[#FDFBF7] rounded-full hover:shadow-lg hover:shadow-[#6F4E37]/20 transition-all duration-300 flex items-center gap-2">
+          <button className="group px-6 py-3 bg-gradient-to-r from-[#6F4E37] to-[#8D6E63] text-[#FDFBF7] rounded-full hover:shadow-lg hover:shadow-[#6F4E37]/20 transition-all duration-300 flex items-center justify-center gap-2">
             Contactarme 
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="group px-6 py-3 border border-[#D7CCC8] text-[#6F4E37] rounded-full hover:bg-white/80 hover:border-[#6F4E37]/30 hover:shadow-sm transition-all duration-300 flex items-center gap-2">
+          <button className="group px-6 py-3 border border-[#D7CCC8] text-[#6F4E37] rounded-full hover:bg-white/80 hover:border-[#6F4E37]/30 hover:shadow-sm transition-all duration-300 flex items-center justify-center gap-2">
             <Download size={16} />
             Descargar CV
           </button>

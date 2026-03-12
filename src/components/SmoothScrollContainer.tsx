@@ -1,31 +1,42 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-export function SmoothScrollContainer({ children }) {
-  const containerRef = useRef(null);
-  const innerRef = useRef(null);
-  const [width, setWidth] = useState(0);
+interface SmoothScrollContainerProps {
+  children: React.ReactNode;
+}
 
-  // Effect to calculate content width and limit drag
+export function SmoothScrollContainer({ children }: SmoothScrollContainerProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const innerRef = useRef<HTMLDivElement>(null);
+  const [dragWidth, setDragWidth] = useState(0);
+
   useEffect(() => {
-    if (innerRef.current && containerRef.current) {
-      setWidth(innerRef.current.scrollWidth - containerRef.current.offsetWidth);
-    }
+    const update = () => {
+      if (innerRef.current && containerRef.current) {
+        setDragWidth(innerRef.current.scrollWidth - containerRef.current.offsetWidth);
+      }
+    };
+    update();
+    window.addEventListener('resize', update);
+    return () => window.removeEventListener('resize', update);
   }, [children]);
   
   return (
-    <div className="relative overflow-hidden group" ref={containerRef}>
+    // FIX: Use py-4 padding instead of overflow-hidden so cards don't get clipped on hover scale.
+    // The outer div provides visual bounds but NO overflow:hidden
+    <div className="relative group" ref={containerRef}>
       <motion.div 
         drag="x"
-        dragConstraints={{ left: -width, right: 0 }}
-        whileTap={{ cursor: "grabbing" }}
-        className="flex gap-6 pb-4 cursor-grab overflow-visible"
+        dragConstraints={{ left: -dragWidth, right: 0 }}
+        dragElastic={0.1}
+        whileTap={{ cursor: 'grabbing' }}
+        className="flex gap-6 py-4 px-8 cursor-grab"
         ref={innerRef}
         style={{ width: 'max-content' }}
       >
         {children}
       </motion.div>
-      {/* Visual indicator for horizontal scroll */}
+      {/* Fade gradient hint for scrollable content */}
       <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white/80 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
   );
