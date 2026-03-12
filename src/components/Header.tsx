@@ -11,16 +11,16 @@ export default function Header() {
         transition={{ duration: 0.7, ease: 'easeOut' }}
         className="flex-1 space-y-6 text-center md:text-left"
       >
-        <motion.p 
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
           className="text-sm tracking-widest uppercase text-[#A1887F]"
         >
           ✦ Portafolio Digital
         </motion.p>
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }} 
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
           className="text-4xl md:text-6xl font-light tracking-tight text-[#2D1A11]"
@@ -30,26 +30,22 @@ export default function Header() {
             Isabella
           </span>
         </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0, y: 10 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
           className="text-lg text-[#8D6E63] font-light leading-relaxed max-w-2xl px-4 md:px-0"
         >
-          Estratega de{' '}
-          <strong className="font-medium text-[#5D4037]">
-            Marketing, UX/UI y Automatizaciones con IA
-          </strong>
-          . Optimizo negocios con tecnología y creatividad.
+          Soy <strong className="font-medium text-[#5D4037]">estudiante de mercadeo</strong> con un fuerte enfoque en <strong className="font-medium text-[#5D4037]">estrategia de marketing</strong>. Potencio resultados mediante <strong className="font-medium text-[#5D4037]">automatizaciones con Inteligencia Artificial</strong> para optimizar procesos y escalar negocios.
         </motion.p>
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }} 
-          animate={{ opacity: 1, y: 0 }} 
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start px-8 sm:px-0"
         >
           <button className="group px-6 py-3 bg-gradient-to-r from-[#6F4E37] to-[#8D6E63] text-[#FDFBF7] rounded-full hover:shadow-lg hover:shadow-[#6F4E37]/20 transition-all duration-300 flex items-center justify-center gap-2">
-            Contactarme 
+            Contactarme
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <button className="group px-6 py-3 border border-[#D7CCC8] text-[#6F4E37] rounded-full hover:bg-white/80 hover:border-[#6F4E37]/30 hover:shadow-sm transition-all duration-300 flex items-center justify-center gap-2">
@@ -58,7 +54,7 @@ export default function Header() {
           </button>
         </motion.div>
       </motion.div>
-      
+
       {/* Animated Avatar */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
