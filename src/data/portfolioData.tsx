@@ -15,7 +15,7 @@ import {
 
 export const habilidades = [
   "Estrategia B2B", "Diseño UX/UI", "Automatización (n8n)", "Inteligencia Artificial",
-  "Komo CRM", "Chatbots de Venta", "Edición de Video", "Embudos de Venta"
+  "Kommo CRM", "Chatbots de Venta", "Edición de Video", "Embudos de Venta"
 ];
 
 export const proyectosU = {
@@ -34,7 +34,7 @@ export const proyectosU = {
 
 export const proyectosPago = {
   ia: [
-    { id: 8, title: 'Chatbots de Venta (Komo CRM)', desc: 'Bots conversacionales para cierre de ventas.', fullDesc: 'Entrenamiento de modelos LLM para atención 24/7 en CRM.', resultados: ['+25% conversión'], icon: <MessageSquare size={24} /> },
+    { id: 8, title: 'Chatbots de Venta (Kommo CRM)', desc: 'Bots conversacionales para cierre de ventas.', fullDesc: 'Entrenamiento de modelos LLM para atención 24/7 en CRM.', resultados: ['+25% conversión'], icon: <MessageSquare size={24} /> },
   ],
   marketing: [
     { id: 9, title: 'Embudos en Canales', desc: 'Funnel de ventas en Telegram y Facebook.', fullDesc: 'Estrategia de lanzamientos mediante comunidades digitales.', resultados: ['ROAS 4.5x'], icon: <Megaphone size={24} /> },
