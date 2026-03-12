@@ -1,0 +1,29 @@
+---
+import Header from '../components/Header';
+import PortfolioTabs from '../components/PortfolioTabs';
+import '../styles/global.css';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Isabella Portfolio</title>
+    <!-- Modern Sans-Serif Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#FDFBF7] text-[#3E2723] font-inter selection:bg-[#D7CCC8]">
+    <div class="absolute inset-0 z-[-1] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(111,78,55,0.05),rgba(255,255,255,0))]"></div>
+    <!-- Premium Gradient Background -->
+    
+    <Header client:load />
+
+    <!-- Main Island Container -->
+    <PortfolioTabs client:load />
+
+  </body>
+</html>
