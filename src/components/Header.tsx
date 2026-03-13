@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { User, ArrowRight, Download } from 'lucide-react';
+import ContactModal from './ContactModal';
 
 export default function Header() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+
   return (
     <header className="max-w-5xl mx-auto pt-16 pb-12 px-6 flex flex-col md:flex-row items-center justify-between gap-10">
       <motion.div
@@ -15,7 +18,7 @@ export default function Header() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="text-sm tracking-widest uppercase text-[#A1887F]"
+          className="text-sm tracking-widest uppercase text-gray-400"
         >
           ✦ Portafolio Digital
         </motion.p>
@@ -23,10 +26,10 @@ export default function Header() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 0.6 }}
-          className="text-4xl md:text-6xl font-light tracking-tight text-[#2D1A11]"
+          className="text-4xl md:text-6xl font-light tracking-tight text-gray-900"
         >
           Hola, soy{' '}
-          <span className="font-semibold bg-gradient-to-r from-[#6F4E37] to-[#A1887F] bg-clip-text text-transparent inline-block">
+          <span className="font-semibold bg-gradient-to-r from-gray-900 to-gray-500 bg-clip-text text-transparent inline-block">
             Isabella
           </span>
         </motion.h1>
@@ -34,9 +37,9 @@ export default function Header() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="text-lg text-[#8D6E63] font-light leading-relaxed max-w-2xl px-4 md:px-0"
+          className="text-lg text-gray-600 font-light leading-relaxed max-w-2xl px-4 md:px-0"
         >
-          Soy <strong className="font-medium text-[#5D4037]">estudiante de mercadeo</strong> con un fuerte enfoque en <strong className="font-medium text-[#5D4037]">estrategia de marketing</strong>. Potencio resultados mediante <strong className="font-medium text-[#5D4037]">automatizaciones con Inteligencia Artificial</strong> para optimizar procesos y escalar negocios.
+          Soy <strong className="font-medium text-gray-900">estudiante de mercadeo</strong> con un fuerte enfoque en <strong className="font-medium text-gray-900">estrategia de marketing</strong>. Potencio resultados mediante <strong className="font-medium text-gray-900">automatizaciones con Inteligencia Artificial</strong> para optimizar procesos y escalar negocios.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -44,16 +47,27 @@ export default function Header() {
           transition={{ delay: 0.5, duration: 0.5 }}
           className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start px-8 sm:px-0"
         >
-          <button className="group px-6 py-3 bg-gradient-to-r from-[#6F4E37] to-[#8D6E63] text-[#FDFBF7] rounded-full hover:shadow-lg hover:shadow-[#6F4E37]/20 transition-all duration-300 flex items-center justify-center gap-2">
+          <button 
+            onClick={() => setIsContactOpen(true)}
+            className="group px-6 py-3 bg-black text-white rounded-xl hover:shadow-lg hover:shadow-black/10 transition-all duration-300 flex items-center justify-center gap-2 border border-black font-semibold"
+          >
             Contactarme
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="group px-6 py-3 border border-[#D7CCC8] text-[#6F4E37] rounded-full hover:bg-white/80 hover:border-[#6F4E37]/30 hover:shadow-sm transition-all duration-300 flex items-center justify-center gap-2">
+          <a 
+            href="/portafolio/hv-isabella-arbelaez.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group px-6 py-3 border border-gray-200 text-gray-700 rounded-xl hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 flex items-center justify-center gap-2 font-semibold"
+          >
             <Download size={16} />
             Descargar CV
-          </button>
+          </a>
         </motion.div>
       </motion.div>
+
+      <ContactModal isOpen={isContactOpen} onClose={() => setIsContactOpen(false)} />
+
 
       {/* Animated Avatar */}
       <motion.div
