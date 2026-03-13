@@ -48,13 +48,12 @@ export const proyectosU = {
       fullDesc: 'Creación de piezas publicitarias de alto impacto optimizadas para algoritmos de Meta. Diseño centrado en conversión y estética premium.', 
       resultados: ['CTR promedio superior al 2.5%'], 
       icon: <Layout size={24} />,
-      images: [
-        '/portafolio/img/landing-pastillas-energeticas.jpeg',
-        '/portafolio/img/lechoneria-chancho.png',
-        '/portafolio/img/super-pinguinos-bimbo.png',
-        '/portafolio/img/poster-software-dev.jpeg'
-      ],
-      proposalLink: 'https://kaobags.my.canva.site/dahbvbolxss'
+      gallery: [
+        { src: '/portafolio/img/landing-pastillas-energeticas.jpeg', title: 'Landing page para producto de pastillas energéticas', proposalLink: 'https://kaobags.my.canva.site/dahbvbolxss' },
+        { src: '/portafolio/img/lechoneria-chancho.png', title: 'Poster para la lechoneria chancho el lechon' },
+        { src: '/portafolio/img/super-pinguinos-bimbo.png', title: 'Poster super pinguino bimbo' },
+        { src: '/portafolio/img/poster-software-dev.jpeg', title: 'Poster publicitario de desarrollo de software' }
+      ]
     },
     { 
       id: 4, 
@@ -63,9 +62,9 @@ export const proyectosU = {
       fullDesc: 'Prototipado de alta fidelidad en Figma enfocado en la experiencia del usuario final. Desarrollo de flujos intuitivos y sistemas visuales cohesivos.', 
       resultados: ['Sistemas de diseño escalables', 'Prototipos interactivos de alta fidelidad'], 
       icon: <Smartphone size={24} />,
-      images: [
-        '/portafolio/img/app-menstruacion.png',
-        '/portafolio/img/app-ensaladas.png'
+      gallery: [
+        { src: '/portafolio/img/app-menstruacion.png', title: 'App de ciclo menstrual' },
+        { src: '/portafolio/img/app-ensaladas.png', title: 'Aplicación de venta de ensaladas de frutas' }
       ],
       link: 'https://www.canva.com/design/DAGmmYNgIHk/HuSHEp4xG_fjPlxkMK8uHg/view?utm_content=DAGmmYNgIHk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1e793eca4d',
       embed: '<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/vTwY7ULyzgMTrPrkBN8T1l/Untitled?node-id=1-15&embed-host=share" allowfullscreen></iframe>'
@@ -108,9 +107,9 @@ export const proyectosPago = {
       fullDesc: 'Entrenamiento de modelos de lenguaje (LLM) para automatizar el cierre de ventas por chat. Diseño de flujos conversacionales inteligentes que califican leads en tiempo real.', 
       resultados: ['+25% en la tasa de conversión', 'Atención 24/7 sin intervención humana'], 
       icon: <MessageSquare size={24} />,
-      images: [
-        '/portafolio/img/automatizacion-k-bot.png',
-        '/portafolio/img/kommo-bots.png'
+      gallery: [
+        { src: '/portafolio/img/automatizacion-k-bot.png', title: 'Automatización de k bot' },
+        { src: '/portafolio/img/kommo-bots.png', title: 'Kommo bots' }
       ]
     },
   ],
@@ -142,9 +141,9 @@ export const proyectosOtros = [
     fullDesc: 'Desarrollo conceptual y MVP funcional de una aplicación para trazabilidad y eficiencia en entregas locales. Enfoque en simplicidad y velocidad operativa.', 
     resultados: ['Reducción del 20% en tiempos operativos', 'Visibilidad en tiempo real para el cliente'], 
     icon: <Truck size={24} />,
-    images: [
-      '/portafolio/img/lovable-mvp.png'
+    gallery: [
+      { src: '/portafolio/img/lovable-mvp.png', title: 'MVP Logística - Lovable' }
     ],
-    link: 'https://lovable.dev'
+    link: 'https://logisticadistribucion.lovable.app'
   },
 ];

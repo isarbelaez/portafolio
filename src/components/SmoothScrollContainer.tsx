@@ -26,34 +26,33 @@ export function SmoothScrollContainer({ children }: SmoothScrollContainerProps) 
   }, [children, updateWidth]);
   
   return (
-    <div className="relative group overflow-hidden" ref={containerRef}>
-      <div className="px-10"> 
-        <motion.div 
-          drag="x"
-          dragConstraints={{ left: -dragWidth - 40, right: 40 }}
-          dragElastic={0.1}
-          dragTransition={{
-            power: 0.1, // Reduced power to make it less "slippery"
-            // FIX: "Enfoque" - Snap to the nearest card
-            modifyTarget: (target) => {
-              // Round to the nearest card position
-              // We use negative values because target is the translateX
-              const snapPoint = Math.round(target / CARD_WIDTH_WITH_GAP) * CARD_WIDTH_WITH_GAP;
-              return snapPoint;
-            }
-          }}
-          whileTap={{ cursor: 'grabbing' }}
-          className="flex gap-6 py-12 px-2 cursor-grab"
-          ref={innerRef}
-          style={{ width: 'max-content' }}
-        >
-          {children}
-        </motion.div>
-      </div>
+    <div className="relative group overflow-hidden w-full flex justify-center" ref={containerRef}>
+      <motion.div 
+        drag="x"
+        dragConstraints={{ 
+          left: -dragWidth, 
+          right: 0 
+        }}
+        dragElastic={0.2}
+        dragTransition={{
+          power: 0.3, // Increased power for more inertia
+          timeConstant: 150, // Reduced from default ~700 for much faster snapping
+          modifyTarget: (target) => {
+            const snapPoint = Math.round(target / CARD_WIDTH_WITH_GAP) * CARD_WIDTH_WITH_GAP;
+            return snapPoint;
+          }
+        }}
+        whileTap={{ cursor: 'grabbing' }}
+        className="flex gap-6 py-12 cursor-grab px-[calc(50%-150px)] sm:px-[calc(50%-150px)]"
+        ref={innerRef}
+        style={{ width: 'max-content' }}
+      >
+        {children}
+      </motion.div>
       
       {/* Fade gradient hint for scrollable content */}
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white/80 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white/80 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-10" />
     </div>
   );
 }

@@ -3,6 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, X, CheckCircle2, ExternalLink, Presentation } from 'lucide-react';
 import { ImageGallery } from './ImageGallery';
 
+interface ProjectImage {
+  src: string;
+  title: string;
+  proposalLink?: string;
+}
+
 interface Project {
   id: number;
   title: string;
@@ -12,7 +18,7 @@ interface Project {
   icon: React.ReactNode;
   link?: string;
   proposalLink?: string;
-  images?: string[];
+  gallery?: ProjectImage[];
   embed?: string;
 }
 
@@ -70,32 +76,38 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#2D1A11]/60 backdrop-blur-md" 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm" 
           onClick={onClose}
         >
           <motion.div 
-            initial={{ scale: 0.9, opacity: 0, y: 20 }} 
+            initial={{ scale: 0.95, opacity: 0, y: 10 }} 
             animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-            className="bg-white/98 backdrop-blur-xl rounded-3xl max-w-2xl w-full p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] border border-[#EFEBE1]" 
+            exit={{ scale: 0.95, opacity: 0, y: 10 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+            className="bg-white rounded-3xl max-w-2xl w-full p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] border border-gray-100 
+                       scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent
+                       [&::-webkit-scrollbar]:w-2
+                       [&::-webkit-scrollbar-track]:bg-transparent
+                       [&::-webkit-scrollbar-thumb]:bg-gray-200
+                       [&::-webkit-scrollbar-thumb]:rounded-full
+                       hover:[&::-webkit-scrollbar-thumb]:bg-gray-300 transition-colors" 
             onClick={e => e.stopPropagation()}
           >
             <button 
               onClick={onClose} 
-              className="absolute top-6 right-6 text-[#A1887F] hover:text-[#6F4E37] hover:rotate-90 transition-all duration-300 z-10"
+              className="absolute top-6 right-6 text-gray-400 hover:text-black transition-all duration-300 z-10 p-2 hover:bg-gray-50 rounded-full"
               aria-label="Cerrar"
             >
-              <X size={24} />
+              <X size={20} />
             </button>
 
             <div className="flex flex-col gap-6">
               <div className="flex-1">
-                <div className="mb-6 w-12 h-12 rounded-2xl bg-gradient-to-br from-[#FDFBF7] to-[#EFEBE1] border border-[#D7CCC8] flex items-center justify-center text-[#6F4E37]">
+                <div className="mb-6 w-12 h-12 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-700">
                   {project.icon}
                 </div>
-                <h2 className="text-3xl font-bold text-[#2D1A11] mb-3 leading-tight">{project.title}</h2>
-                <p className="text-[#8D6E63] mb-6 text-lg leading-relaxed">{project.fullDesc}</p>
+                <h2 className="text-3xl font-bold text-gray-900 mb-3 leading-tight">{project.title}</h2>
+                <p className="text-gray-600 mb-6 text-lg leading-relaxed">{project.fullDesc}</p>
 
                 <div className="flex flex-wrap gap-4 mb-8">
                   {project.proposalLink && (
@@ -103,7 +115,7 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
                       href={project.proposalLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-[#6F4E37] text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-[#3E2723] transition-all shadow-lg shadow-[#6F4E37]/20"
+                      className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-xl font-bold text-sm hover:bg-gray-800 transition-all shadow-lg shadow-black/5"
                     >
                       Ver Propuesta <Presentation size={18} />
                     </a>
@@ -113,25 +125,25 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-white text-[#6F4E37] border-2 border-[#6F4E37] px-6 py-3 rounded-full font-bold text-sm hover:bg-[#FDFBF7] transition-all"
+                      className="inline-flex items-center gap-2 bg-white text-black border border-gray-200 px-6 py-3 rounded-xl font-bold text-sm hover:bg-gray-50 transition-all"
                     >
-                      Demo en Vivo <ExternalLink size={18} />
+                      Ver Demo <ExternalLink size={18} />
                     </a>
                   )}
                 </div>
 
-                <div className="bg-gradient-to-br from-[#FDFBF7] to-white p-6 rounded-2xl border border-[#EFEBE1]">
-                  <h4 className="text-xs font-bold text-[#6F4E37] uppercase mb-4 tracking-widest">Impacto y Resultados</h4>
+                <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
+                  <h4 className="text-[10px] font-bold text-gray-400 uppercase mb-4 tracking-[0.2em]">Impacto y Resultados</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {project.resultados.map((r, i) => (
                       <motion.div 
                         key={i} 
-                        initial={{ opacity: 0, x: -10 }}
+                        initial={{ opacity: 0, x: -5 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        className="flex items-start gap-3 text-sm text-[#5D4037]"
+                        transition={{ delay: i * 0.05 }}
+                        className="flex items-start gap-3 text-sm text-gray-600"
                       >
-                        <CheckCircle2 size={16} className="text-green-600 shrink-0 mt-0.5" /> 
+                        <div className="w-1.5 h-1.5 rounded-full bg-black/20 mt-1.5 shrink-0" />
                         <span>{r}</span>
                       </motion.div>
                     ))}
@@ -141,15 +153,15 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
             </div>
 
             {project.embed && (
-              <div className="mt-8 rounded-2xl overflow-hidden border border-[#EFEBE1] shadow-inner bg-black/5">
+              <div className="mt-8 rounded-2xl overflow-hidden border border-gray-100 shadow-sm bg-gray-50">
                 <div dangerouslySetInnerHTML={{ __html: project.embed.replace('width="800"', 'width="100%"').replace('height="450"', 'height="400"') }} />
               </div>
             )}
 
-            {project.images && (
-              <div className="mt-8 border-t border-[#EFEBE1] pt-8">
-                <h4 className="text-xs font-bold text-[#6F4E37] uppercase mb-4 tracking-widest">Galería Visual</h4>
-                <ImageGallery images={project.images} proposalLink={project.proposalLink || project.link} />
+            {project.gallery && (
+              <div className="mt-8 border-t border-gray-100 pt-8">
+                <h4 className="text-[10px] font-bold text-gray-400 uppercase mb-4 tracking-[0.2em]">Galería Visual</h4>
+                <ImageGallery gallery={project.gallery} />
               </div>
             )}
           </motion.div>
