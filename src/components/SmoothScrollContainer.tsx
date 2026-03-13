@@ -28,12 +28,12 @@ export function SmoothScrollContainer({ children }: SmoothScrollContainerProps) 
   return (
     <div className="relative group overflow-hidden w-full" ref={containerRef}>
       <motion.div 
-        drag="x"
+        drag={dragWidth > 0 ? "x" : false}
         dragConstraints={{ 
           left: -dragWidth, 
           right: 0 
         }}
-        dragElastic={0.2}
+        dragElastic={0.25}
         dragTransition={{
           power: 0.4, // Higher power for more inertia
           timeConstant: 120, // Faster snapping
