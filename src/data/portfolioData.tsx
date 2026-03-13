@@ -105,9 +105,13 @@ export const proyectosPago = {
       id: 8, 
       title: 'Consultoría en IA Conversacional', 
       desc: 'Implementación de IA en Kommo CRM para ventas.', 
-      fullDesc: 'Entrenamiento de modelos de lenguaje (LLM) para automatizar el cierre de ventas por chat.', 
-      resultados: ['+25% en la tasa de conversión'], 
-      icon: <MessageSquare size={24} /> 
+      fullDesc: 'Entrenamiento de modelos de lenguaje (LLM) para automatizar el cierre de ventas por chat. Diseño de flujos conversacionales inteligentes que califican leads en tiempo real.', 
+      resultados: ['+25% en la tasa de conversión', 'Atención 24/7 sin intervención humana'], 
+      icon: <MessageSquare size={24} />,
+      images: [
+        '/portafolio/img/automatizacion-k-bot.png',
+        '/portafolio/img/kommo-bots.png'
+      ]
     },
   ],
   marketing: [
@@ -135,8 +139,12 @@ export const proyectosOtros = [
     id: 11, 
     title: 'Solución Logística MVP', 
     desc: 'Optimización tecnológica de última milla.', 
-    fullDesc: 'Desarrollo conceptual de una app para trazabilidad y eficiencia en entregas locales.', 
-    resultados: ['Reducción del 20% en tiempos operativos'], 
-    icon: <Truck size={24} /> 
+    fullDesc: 'Desarrollo conceptual y MVP funcional de una aplicación para trazabilidad y eficiencia en entregas locales. Enfoque en simplicidad y velocidad operativa.', 
+    resultados: ['Reducción del 20% en tiempos operativos', 'Visibilidad en tiempo real para el cliente'], 
+    icon: <Truck size={24} />,
+    images: [
+      '/portafolio/img/lovable-mvp.png'
+    ],
+    link: 'https://lovable.dev'
   },
 ];
