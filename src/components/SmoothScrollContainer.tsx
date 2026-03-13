@@ -26,7 +26,7 @@ export function SmoothScrollContainer({ children }: SmoothScrollContainerProps) 
   }, [children, updateWidth]);
   
   return (
-    <div className="relative group overflow-hidden w-full flex justify-center" ref={containerRef}>
+    <div className="relative group overflow-hidden w-full" ref={containerRef}>
       <motion.div 
         drag="x"
         dragConstraints={{ 
@@ -35,15 +35,16 @@ export function SmoothScrollContainer({ children }: SmoothScrollContainerProps) 
         }}
         dragElastic={0.2}
         dragTransition={{
-          power: 0.3, // Increased power for more inertia
-          timeConstant: 150, // Reduced from default ~700 for much faster snapping
+          power: 0.4, // Higher power for more inertia
+          timeConstant: 120, // Faster snapping
           modifyTarget: (target) => {
+            // Only snap if we are in mobile/one-card view or if velocity is low
             const snapPoint = Math.round(target / CARD_WIDTH_WITH_GAP) * CARD_WIDTH_WITH_GAP;
             return snapPoint;
           }
         }}
         whileTap={{ cursor: 'grabbing' }}
-        className="flex gap-6 py-12 cursor-grab px-[calc(50%-150px)] sm:px-[calc(50%-150px)]"
+        className="flex gap-6 py-12 cursor-grab px-8 sm:px-12 md:px-24"
         ref={innerRef}
         style={{ width: 'max-content' }}
       >
