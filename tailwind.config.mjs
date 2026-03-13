@@ -3,6 +3,15 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      colors: {
+        brand: {
+          coffee: '#6F4E37',
+          beige: '#A1887F',
+          muted: '#D7CCC8',
+          cream: '#FDFBF7',
+          espresso: '#3E2723',
+        }
+      },
       fontFamily: {
         inter: ['Inter', 'sans-serif'],
       },
