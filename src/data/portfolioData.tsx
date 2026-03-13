@@ -29,7 +29,8 @@ export const proyectosU = {
       desc: 'Desarrollo de tácticas para captación de leads cualificados.', 
       fullDesc: 'Diseño de un ecosistema de prospección en LinkedIn y Google Ads para el sector industrial.', 
       resultados: ['+45% leads calificados', '-18% en costo por adquisición'], 
-      icon: <Target size={24} /> 
+      icon: <Target size={24} />,
+      proposalLink: 'https://www.canva.com/design/DAG5QUBgRCI/9rCA-8KBK2uPeguNznVEVw/view?utm_content=DAG5QUBgRCI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h9d54ced0a9'
     },
     { 
       id: 2, 
@@ -37,23 +38,37 @@ export const proyectosU = {
       desc: 'Estrategia de fidelización y captación corporativa.', 
       fullDesc: 'Creación de modelos de suscripción y reservas digitales para el sector restaurantero.', 
       resultados: ['Aumento del 30% en reservas corporativas'], 
-      icon: <Briefcase size={24} /> 
+      icon: <Briefcase size={24} />,
+      proposalLink: 'https://www.canva.com/design/DAG4yNE1diE/UMA4T-b0tFfphFYnL7ec6w/view?utm_content=DAG4yNE1diE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h15d93b01b0'
     },
     { 
       id: 3, 
       title: 'Optimización de Creatividades', 
       desc: 'Diseño visual basado en psicología del consumidor.', 
-      fullDesc: 'Creación de piezas publicitarias de alto impacto optimizadas para algoritmos de Meta.', 
+      fullDesc: 'Creación de piezas publicitarias de alto impacto optimizadas para algoritmos de Meta. Diseño centrado en conversión y estética premium.', 
       resultados: ['CTR promedio superior al 2.5%'], 
-      icon: <Layout size={24} /> 
+      icon: <Layout size={24} />,
+      images: [
+        '/portafolio/img/landing-pastillas-energeticas.jpeg',
+        '/portafolio/img/lechoneria-chancho.png',
+        '/portafolio/img/super-pinguinos-bimbo.png',
+        '/portafolio/img/poster-software-dev.jpeg'
+      ],
+      proposalLink: 'https://kaobags.my.canva.site/dahbvbolxss'
     },
     { 
       id: 4, 
       title: 'Arquitectura UX/UI', 
       desc: 'Diseño de interfaces centradas en conversión.', 
-      fullDesc: 'Prototipado de alta fidelidad en Figma enfocado en la experiencia del usuario final.', 
-      resultados: ['Sistemas de diseño escalables'], 
-      icon: <Smartphone size={24} /> 
+      fullDesc: 'Prototipado de alta fidelidad en Figma enfocado en la experiencia del usuario final. Desarrollo de flujos intuitivos y sistemas visuales cohesivos.', 
+      resultados: ['Sistemas de diseño escalables', 'Prototipos interactivos de alta fidelidad'], 
+      icon: <Smartphone size={24} />,
+      images: [
+        '/portafolio/img/app-menstruacion.png',
+        '/portafolio/img/app-ensaladas.png'
+      ],
+      link: 'https://www.canva.com/design/DAGmmYNgIHk/HuSHEp4xG_fjPlxkMK8uHg/view?utm_content=DAGmmYNgIHk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1e793eca4d',
+      embed: '<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/proto/vTwY7ULyzgMTrPrkBN8T1l/Untitled?node-id=1-15&embed-host=share" allowfullscreen></iframe>'
     },
   ],
   automatizacion: [
