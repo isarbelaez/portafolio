@@ -35,7 +35,7 @@ const mockProjects = [
   {
     id: 3,
     title: 'Portafolio Profesional',
-    type: 'Sitio web',
+    type: 'Sitio Web',
     niche: 'Educacion',
     desc: 'Realizamos un portafolio de Fotografia, con un diseño limpio y minimalista.',
     fullDesc: 'Fue diseñada para mostarar los servicios de un fotografo profesional y con automatizacion de Google Sheet y conctacto directo con WhatsApp.',
