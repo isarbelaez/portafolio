@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, X, CheckCircle2, ExternalLink, Presentation } from 'lucide-react';
 import { ImageGallery } from './ImageGallery';
@@ -71,7 +72,10 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [project, onClose]);
 
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const modalContent = (
     <AnimatePresence>
       {project && (
         <motion.div 
@@ -191,4 +195,7 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
       )}
     </AnimatePresence>
   );
+
+  if (!mounted) return null;
+  return createPortal(modalContent, document.body);
 }

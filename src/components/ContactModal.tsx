@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send, Mail, User, MessageSquare, CheckCircle2 } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
@@ -97,7 +98,10 @@ function ContactForm({ onClose }: { onClose: () => void }) {
 }
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const modalContent = (
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -135,4 +139,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       )}
     </AnimatePresence>
   );
+
+  if (!mounted) return null;
+  return createPortal(modalContent, document.body);
 }

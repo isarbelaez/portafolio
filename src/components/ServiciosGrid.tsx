@@ -16,7 +16,7 @@ const mockProjects = [
     demoLink: 'https://isarbelaez.github.io/ejemplo-villa-eucalipto-y-romero-glamping/',
     comoSeHizo: 'Se implementó una arquitectura en Next.js con Tailwind CSS para crear una interfaz inmersiva, junto con un sistema backend en Node.js para las reservas.',
     programas: ['Astro', 'Tailwind', 'Figma'],
-    gallery: [{ src: '/portafolio/img/glampingromero.png', title: 'Glamping' }]
+    gallery: [{ src: '/img/glampingromero.png', title: 'Glamping' }]
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const mockProjects = [
     demoLink: 'https://preview-glamping-santa-helena.vercel.app/',
     comoSeHizo: 'Sitio web desarrollado con Astro, enfocado en alto rendimiento, velocidad de carga y optimización SEO desde su estructura base. El proyecto fue desplegado en Vercel, permitiendo una infraestructura escalable, segura y con actualizaciones automáticas. Todo el control de versiones y flujo de desarrollo se gestionó mediante GitHub, asegurando organización, mantenimiento continuo y facilidad para futuras mejoras.',
     programas: ['Astro', 'Versel', 'Githube', 'Figma'],
-    gallery: [{ src: '/portafolio/img/glampingsantaelena.png', title: 'Glamping Santa Elena' }]
+    gallery: [{ src: '/img/glampingsantaelena.png', title: 'Glamping Santa Elena' }]
   },
   {
     id: 3,
@@ -44,7 +44,7 @@ const mockProjects = [
     demoLink: 'https://portafoliojordi.vercel.app/',
     comoSeHizo: 'Se diseñó una estructura simple y limpia, para mostrar los servicios del fotografo, con integraciones de WhatsApp y Google Sheet para facilitar la comunicación y gestión de leads.',
     programas: ['Astro', 'Vercel', 'Google Sheet', 'WhatsApp'],
-    gallery: [{ src: '/portafolio/img/portafolio.png', title: 'Portafolio' }]
+    gallery: [{ src: '/img/portafolio.png', title: 'Portafolio' }]
   },
   {
     id: 4,
@@ -58,22 +58,22 @@ const mockProjects = [
     demoLink: 'https://skyvenroofing.com/',
     comoSeHizo: 'Se diseñó una estructura simple y limpia, para mostrar los servicios de la empresa, con posicionamiento del Seo ',
     programas: ['HTML', 'CSS', 'JavaScript', 'Figma'],
-    gallery: [{ src: '/portafolio/img/construccio.png', title: 'Construccion' }]
+    gallery: [{ src: '/img/construccio.png', title: 'Construccion' }]
   },
-// {
-//     id: 5,
-//     title: 'Homes Real Estate',
-//     type: 'Sitio Web',
-//     niche: 'Educación',
-//     desc: 'Sitio web inmobiliario con búsqueda avanzada y recorridos virtuales 360°.',
-//     fullDesc: 'Plataforma para mostrar propiedades inmobiliarias con filtros avanzados y mapas.',
-//     resultados: ['+300 prospectos mensuales'],
-//     icon: <Laptop size={24} weight="regular" />,
-//     demoLink: '#',
-//     comoSeHizo: 'Integración de mapas interactivos y recorridos en 360 grados, utilizando un CMS headless para facilitar la actualización de propiedades.',
-//     programas: ['Next.js', 'Sanity CMS', 'Mapbox', 'Tailwind'],
-//     gallery: [{ src: 'https://picsum.photos/seed/homes/800/600', title: 'Homes' }]
-//   },
+{
+     id: 5,
+   title: 'DannyTortas',
+     type: 'Chatbots',
+     niche: 'Restaurantes',
+    desc: 'Impmentamos un chatbot con IA para la automatizacion de pedidos y consultas de los clientes.',
+    fullDesc: 'Automatizacion de pedidos y consultas de los clientes. SIN INTERVENCION HUMANA',
+    resultados: ['+300 prospectos mensuales', 'Mas de 100 pedidos tomados'],
+     icon: <Laptop size={24} weight="regular" />,
+    demoLink: '#',
+   comoSeHizo: 'Se implementó un sistema de chatbot con IA , lo que permitió una integración fluida con sistemas de gestión de pedidos y consultas de clientes. El chatbot fue entrenado con información específica de DannyTortas, lo que le permitió responder preguntas frecuentes de los clientes y tomar pedidos de manera automatizada. desde buenos dias, hasta la confirmacion de pedidos, incluyo menus, ubicaciones, imagenes, audios, palabras claves, botones, lista, filtro para la realizacion de cada leads y estos se acomodaron por etapas de un enbudo, donde cada leads se organizaba dependiendo de la etapa de compra donde se encontraba. Por último, se implementó un sistema de notificaciones y recordatorios para asegurar que los clientes recibieran información relevante sobre sus pedidos y consultas de manera oportuna y automatizada.',
+    programas: ['Kommo', 'AI'],
+    gallery: [{ src: '/img/komo.png', title: 'Pasteleria' }]
+},
 //   {
 //     id: 6,
 //     title: 'Bella Cucina',
