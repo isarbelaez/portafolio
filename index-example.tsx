@@ -68,7 +68,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-light tracking-tight text-[#2D1A11]"
           >
-            Hola, soy <span className="font-medium text-[#6F4E37]">Tu Nombre</span>
+            Hola, soy Isabella <span className="font-medium text-[#6F4E37]">Tu Nombre</span>
           </motion.h1>
           <p className="text-lg text-[#8D6E63] font-light leading-relaxed max-w-2xl">
             Estratega de <strong className="font-medium text-[#5D4037]">Marketing, UX/UI y Automatizaciones con IA</strong>. Optimizo negocios con tecnología y creatividad.

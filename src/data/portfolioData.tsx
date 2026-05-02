@@ -27,7 +27,7 @@ export const proyectosU = {
       id: 1, 
       title: 'Estrategia B2B Industrial', 
       desc: 'Desarrollo de tácticas para captación de leads cualificados.', 
-      fullDesc: 'Diseño de un ecosistema de prospección en LinkedIn y Google Ads para el sector industrial.', 
+      fullDesc: 'Diseño de un ecosistema de prospección en <strong>LinkedIn y Google Ads</strong> para el sector industrial.', 
       resultados: ['+45% leads calificados', '-18% en costo por adquisición'], 
       icon: <Target size={24} />,
       proposalLink: 'https://www.canva.com/design/DAG5QUBgRCI/9rCA-8KBK2uPeguNznVEVw/view?utm_content=DAG5QUBgRCI&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h9d54ced0a9'
@@ -36,7 +36,7 @@ export const proyectosU = {
       id: 2, 
       title: 'Marketing Gastronómico B2C', 
       desc: 'Estrategia de fidelización y captación corporativa.', 
-      fullDesc: 'Creación de modelos de suscripción y reservas digitales para el sector restaurantero.', 
+      fullDesc: 'Creación de modelos de <strong>suscripción y reservas digitales</strong> para el sector restaurantero.', 
       resultados: ['Aumento del 30% en reservas corporativas'], 
       icon: <Briefcase size={24} />,
       proposalLink: 'https://www.canva.com/design/DAG4yNE1diE/UMA4T-b0tFfphFYnL7ec6w/view?utm_content=DAG4yNE1diE&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h15d93b01b0'
@@ -75,7 +75,7 @@ export const proyectosU = {
       id: 5, 
       title: 'Producción de Contenido con IA', 
       desc: 'Generación de videos mediante avatares inteligentes.', 
-      fullDesc: 'Implementación de workflows con HeyGen y Midjourney para escalar la creación de anuncios.', 
+      fullDesc: 'Implementación de workflows con <strong>HeyGen y Midjourney</strong> para escalar la creación de anuncios.', 
       resultados: ['Reducción del 70% en costos de producción'], 
       icon: <Video size={24} /> 
     },
@@ -83,7 +83,7 @@ export const proyectosU = {
       id: 6, 
       title: 'Flujos n8n Avanzados', 
       desc: 'Integración sistémica para gestión de leads.', 
-      fullDesc: 'Automatización de la comunicación entre CRM, Slack y bases de datos para respuesta inmediata.', 
+      fullDesc: 'Automatización de la comunicación entre <strong>CRM, Slack y bases de datos</strong> para respuesta inmediata.', 
       resultados: ['15 horas semanales recuperadas'], 
       icon: <Bot size={24} /> 
     },
@@ -91,7 +91,7 @@ export const proyectosU = {
       id: 7, 
       title: 'Agendamiento Automatizado', 
       desc: 'Sincronización de WhatsApp con Google Calendar.', 
-      fullDesc: 'Desarrollo de un asistente virtual que gestiona citas sin intervención humana.', 
+      fullDesc: 'Desarrollo de un <strong>asistente virtual</strong> que gestiona citas sin intervención humana.', 
       resultados: ['Disminución del 40% en inasistencias (No-shows)'], 
       icon: <Calendar size={24} /> 
     },
@@ -104,7 +104,7 @@ export const proyectosPago = {
       id: 8, 
       title: 'Consultoría en IA Conversacional', 
       desc: 'Implementación de IA en Kommo CRM para ventas.', 
-      fullDesc: 'Entrenamiento de modelos de lenguaje (LLM) para automatizar el cierre de ventas por chat. Diseño de flujos conversacionales inteligentes que califican leads en tiempo real.', 
+      fullDesc: 'Entrenamiento de <strong>modelos de lenguaje (LLM)</strong> para automatizar el cierre de ventas por chat en <strong>Kommo CRM</strong>.', 
       resultados: ['+25% en la tasa de conversión', 'Atención 24/7 sin intervención humana'], 
       icon: <MessageSquare size={24} />,
       gallery: [

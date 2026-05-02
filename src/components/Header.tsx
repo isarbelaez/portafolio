@@ -28,18 +28,18 @@ export default function Header() {
           transition={{ delay: 0.1, duration: 0.6 }}
           className="text-4xl md:text-6xl font-light tracking-tight text-brand-espresso"
         >
-          Hola, soy{' '}
+          Hola, soy Isabella{' '}
           <span className="font-semibold bg-gradient-to-r from-brand-coffee to-brand-beige bg-clip-text text-transparent inline-block">
-            Isabella
+            
           </span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          className="text-lg text-brand-beige/80 font-light leading-relaxed max-w-2xl px-4 md:px-0"
+          className="text-lg text-brand-espresso/80 font-light leading-relaxed max-w-2xl px-4 md:px-0"
         >
-          Soy <strong className="font-medium text-brand-espresso">estudiante de mercadeo</strong> con un fuerte enfoque en <strong className="font-medium text-brand-espresso">estrategia de marketing</strong>. Potencio resultados mediante <strong className="font-medium text-brand-espresso">automatizaciones con Inteligencia Artificial</strong> para optimizar procesos y escalar negocios.
+          Soy <strong>estudiante de mercadeo</strong> con un fuerte enfoque en <strong>estrategia de marketing</strong>. Potencio resultados mediante <strong>automatizaciones con Inteligencia Artificial</strong> para optimizar procesos y escalar negocios.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 10 }}

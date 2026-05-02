@@ -1,70 +1,30 @@
 ---
-import Header from '../components/Header';
-import PortfolioTabs from '../components/PortfolioTabs';
-import Footer from '../components/Footer';
-import '../styles/global.css';
+import SidebarLayout from "../layouts/SidebarLayout.astro";
+import HomeContent from "../components/HomeContent";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Isabella Arbelaez",
+  url: "https://isarbelaez.github.io/portafolio/",
+  description:
+    "Estratega experta en Marketing Digital, Diseño UX/UI centrado en conversión y Automatización con IA.",
+  knowsAbout: [
+    "Marketing Digital",
+    "Diseño UX/UI",
+    "IA",
+    "Automatización",
+    "n8n",
+    "Kommo CRM",
+    "Growth Strategy",
+  ],
+};
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/favicon.png"} />
-    <meta name="viewport" content="width=device-width" />
-    <title>Isabella Arbelaez — Estratega de Marketing Digital, UX/UI y Automatización IA</title>
-    
-    <!-- Advanced SEO -->
-    <meta name="description" content="Estratega experta en Marketing Digital, Diseño UX/UI centrado en conversión y Automatización con IA (n8n, Kommo CRM) para escalar negocios y startups." />
-    <meta name="keywords" content="Isabella Arbelaez, Marketing Digital, Diseño UX/UI, Automatización IA, n8n expert, Kommo CRM, Growth Strategy, Estratega Digital Colombia, Consultoría IA, Workflow Automation" />
-    <link rel="canonical" href="https://isarbelaez.github.io/portafolio/" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_CO" />
-    <meta property="og:url" content="https://isarbelaez.github.io/portafolio/" />
-    <meta property="og:title" content="Isabella Arbelaez — Marketing, UX/UI & IA Strategist" />
-    <meta property="og:description" content="Estratega de Marketing y Diseñadora UX/UI especializada en el uso de IA y automatizaciones para escalar negocios digitales de forma inteligente." />
-    <meta property="og:image" content={new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + "/og-image.png", "https://isarbelaez.github.io/portafolio/").href} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://isarbelaez.github.io/portafolio/" />
-    <meta property="twitter:title" content="Isabella Arbelaez — Portfolio Profesional" />
-    <meta property="twitter:description" content="Consultora en Estrategia Digital, UX/UI y Automatización de Procesos con IA. Potenciando el crecimiento de negocios con tecnología." />
-    <meta property="twitter:image" content={new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + "/og-image.png", "https://isarbelaez.github.io/portafolio/").href} />
-
-    <!-- JSON-LD Structured Data (Schema.org) -->
-    <script type="application/ld+json" is:inline>
-      {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Isabella Arbelaez",
-        "url": "https://isarbelaez.github.io/portafolio/",
-        "jobTitle": "Estratega de Marketing Digital, UX/UI y Automatización IA",
-        "description": "Estratega de Marketing Digital y Diseñadora UX/UI especializada en el uso de herramientas de IA y automatización para escalar negocios.",
-        "knowsAbout": ["Marketing Digital", "Diseño UX/UI", "IA", "Automatización", "n8n", "Kommo CRM", "Growth Strategy"],
-        "sameAs": [
-          "https://www.linkedin.com/in/isabellaarbelaez",
-          "https://github.com/isarbelaez"
-        ]
-      }
-    </script>
-
-    <meta name="generator" content={Astro.generator} />
-    <!-- Modern Sans-Serif Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="min-h-screen bg-[#FDFBF7] text-[#3E2723] font-inter selection:bg-[#D7CCC8]">
-    <div class="absolute inset-0 z-[-1] bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(111,78,55,0.05),rgba(255,255,255,0))]"></div>
-    
-    <Header client:load />
-    <PortfolioTabs client:load />
-    <Footer client:load />
-
-  </body>
-</html>
-
+<SidebarLayout
+  title="Isa Arbelaez | Diseño Web, UX/UI y Automatizaciones IA"
+  description="Diseñamos sistemas digitales que convierten negocios en resultados. Especialistas en desarrollo web, Growth B2B y automatización de procesos."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <HomeContent client:load />
+</SidebarLayout>

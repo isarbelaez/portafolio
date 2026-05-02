@@ -1,0 +1,21 @@
+---
+import SidebarLayout from "../layouts/SidebarLayout.astro";
+import ContactoForm from "../components/ContactoForm";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  name: "Agenda una Llamada | Isa Arbelaez",
+  url: "https://isarbelaez.github.io/portafolio/contacto",
+  description:
+    "Contáctanos para evaluar tu proyecto B2B, landing page o necesidad de automatización de procesos.",
+};
+---
+
+<SidebarLayout
+  title="Contacto y Diagnóstico | Isa Arbelaez"
+  description="¿Listo para escalar tus ventas online? Agenda una evaluación gratuita o envíanos un mensaje para discutir las necesidades de desarrollo de tu negocio."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <ContactoForm client:load />
+</SidebarLayout>

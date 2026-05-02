@@ -1,0 +1,21 @@
+---
+import SidebarLayout from "../layouts/SidebarLayout.astro";
+import TestimoniosGrid from "../components/TestimoniosGrid";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Testimonios y Casos de Éxito | Isa Arbelaez",
+  url: "https://isarbelaez.github.io/portafolio/testimonios",
+  description:
+    "Lee lo que nuestros clientes opinan sobre el impacto de nuestros sitios web y automatizaciones en sus negocios.",
+};
+---
+
+<SidebarLayout
+  title="Casos de Éxito y Testimonios | Isa Arbelaez"
+  description="Resultados reales de clientes reales. Descubre cómo hemos ayudado a empresas en sectores de Salud, E-commerce y Servicios a escalar sus ventas."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <TestimoniosGrid client:load />
+</SidebarLayout>

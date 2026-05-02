@@ -1,0 +1,21 @@
+---
+import SidebarLayout from "../layouts/SidebarLayout.astro";
+import ServiciosGrid from "../components/ServiciosGrid";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Servicios Digitales y Casos de Estudio | Isa Arbelaez",
+  url: "https://isarbelaez.github.io/portafolio/servicios",
+  description:
+    "Explora nuestros proyectos de Sitios Web, E-commerce, Automatizaciones IA y Rediseño Web.",
+};
+---
+
+<SidebarLayout
+  title="Proyectos y Servicios | Isa Arbelaez"
+  description="Casos de éxito en E-commerce, Landing Pages y Chatbots. Filtra nuestro portafolio B2B por nicho y tipo de desarrollo."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <ServiciosGrid client:load />
+</SidebarLayout>

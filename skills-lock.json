@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "skills": {
+    "design-taste-frontend": {
+      "source": "leonxlnx/taste-skill",
+      "sourceType": "github",
+      "computedHash": "d823593e24d7493ab740db8f082cbe3b148ed29af9e804d11f5302ad79e4b96d"
+    },
+    "playwright-cli": {
+      "source": "microsoft/playwright-cli",
+      "sourceType": "github",
+      "computedHash": "d3b0292e4fce2457cb6a80eee36f496c0ec75383724f8b9a1b5e62f657673256"
+    }
+  }
+}

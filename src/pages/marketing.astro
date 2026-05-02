@@ -1,0 +1,21 @@
+---
+import SidebarLayout from "../layouts/SidebarLayout.astro";
+import MarketingContent from "../components/MarketingContent";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Estrategia de Marketing y Crecimiento B2B | Isa Arbelaez",
+  url: "https://isarbelaez.github.io/portafolio/marketing",
+  description:
+    "Descubre nuestras estrategias multicanal y automatizaciones para escalar negocios.",
+};
+---
+
+<SidebarLayout
+  title="Estrategia de Marketing y Automatización | Isa Arbelaez"
+  description="Estrategias probadas para ganar tracción y escalar tu negocio. Optimizamos tasas de conversión y reducimos CAC con n8n y embudos automatizados."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <MarketingContent client:load />
+</SidebarLayout>

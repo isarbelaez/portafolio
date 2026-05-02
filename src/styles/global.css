@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     scroll-behavior: smooth;
+    background-color: #051424;
+    color: #d4e4fa;
   }
 
   body {
@@ -13,10 +17,15 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Smooth page-level scroll */
+  /* Custom Selection Color */
   ::selection {
-    background-color: #D7CCC8;
-    color: #2D1A11;
+    background-color: rgba(208, 188, 255, 0.2);
+    color: #e9ddff;
+  }
+
+  /* Global Highlight Style */
+  strong {
+    @apply font-semibold text-primary;
   }
 }
 
@@ -27,5 +36,9 @@
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  
+  .glass-panel {
+    @apply bg-surface-container-low/50 backdrop-blur-xl border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)];
   }
 }

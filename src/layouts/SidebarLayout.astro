@@ -1,0 +1,50 @@
+---
+import Sidebar from '../components/Sidebar';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+// Normalizing base url
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const currentPath = Astro.url.pathname;
+const cleanPath = currentPath.replace(baseUrl, '') || '/';
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href={`${baseUrl}/favicon.png`} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    
+    <!-- SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(`${baseUrl}/og-image.png`, Astro.site || Astro.url).href} />
+  </head>
+  <body class="bg-surface text-on-surface min-h-[100dvh]">
+    <!-- Ambient glowing background common to all pages -->
+    <div class="fixed inset-0 z-[-1] pointer-events-none opacity-20">
+      <div class="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-primary/20 blur-[120px] rounded-full mix-blend-screen mix-blend-screen"></div>
+      <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary-container/10 blur-[100px] rounded-full mix-blend-screen mix-blend-screen"></div>
+    </div>
+
+    <!-- Sidebar Component (Client:load because it handles mobile drawer + active state path animations) -->
+    <Sidebar currentPath={cleanPath} client:load />
+
+    <!-- Main Content Area -->
+    <div class="md:ml-[260px] min-h-[100dvh] relative transition-all duration-300">
+      <slot />
+    </div>
+  </body>
+</html>
