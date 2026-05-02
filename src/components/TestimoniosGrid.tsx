@@ -45,7 +45,7 @@ function SpotlightCard({ children }: { children: React.ReactNode }) {
 
   return (
     <div
-      className="relative group rounded-3xl border border-white/5 bg-surface-container-low/50 backdrop-blur-md overflow-hidden"
+      className="relative group rounded-3xl border border-white/5 bg-card/50 backdrop-blur-md overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -90,7 +90,7 @@ export default function TestimoniosGrid() {
         <div className="inline-block px-4 py-2 border border-primary/20 bg-primary/5 text-primary rounded-full font-space font-medium text-sm tracking-wide uppercase">
           Testimonios
         </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold text-white tracking-tight max-w-2xl">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold text-foreground tracking-tight max-w-2xl">
           El impacto de trabajar con un <span className="text-primary italic font-light">systema</span> eficiente.
         </h1>
       </div>
@@ -101,21 +101,21 @@ export default function TestimoniosGrid() {
           {testimonials.filter((_, i) => i % 2 === 0).map((t, idx) => (
             <SpotlightCard key={idx}>
               <div className="mb-6">
-                <span className="px-3 py-1 bg-surface-container-high rounded-md text-xs font-space text-outline-variant uppercase">
+                <span className="px-3 py-1 bg-popover rounded-md text-xs font-space text-muted-foreground uppercase">
                   {t.niche} / {t.resultado}
                 </span>
               </div>
-              <p className="text-lg md:text-xl font-inter font-light text-on-surface leading-relaxed mb-10 flex-grow relative">
+              <p className="text-lg md:text-xl font-inter font-light text-foreground leading-relaxed mb-10 flex-grow relative">
                 <span className="absolute -top-4 -left-4 text-4xl text-primary/20 font-serif">"</span>
                 {t.content}
               </p>
               <div className="flex items-center gap-4 mt-auto">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-border bg-popover">
                   <img src={`https://ui-avatars.com/api/?name=${t.name.split(' ').join('+')}&background=1c2b3c&color=d0bcff`} alt={t.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h4 className="font-outfit font-bold text-white">{t.name}</h4>
-                  <p className="text-sm font-inter text-on-surface-variant font-light">{t.role}</p>
+                  <h4 className="font-outfit font-bold text-foreground">{t.name}</h4>
+                  <p className="text-sm font-inter text-muted-foreground font-light">{t.role}</p>
                 </div>
               </div>
             </SpotlightCard>
@@ -126,21 +126,21 @@ export default function TestimoniosGrid() {
           {testimonials.filter((_, i) => i % 2 !== 0).map((t, idx) => (
             <SpotlightCard key={idx}>
                <div className="mb-6">
-                <span className="px-3 py-1 bg-surface-container-high rounded-md text-xs font-space text-outline-variant uppercase">
+                <span className="px-3 py-1 bg-popover rounded-md text-xs font-space text-muted-foreground uppercase">
                   {t.niche} / {t.resultado}
                 </span>
               </div>
-              <p className="text-lg md:text-xl font-inter font-light text-on-surface leading-relaxed mb-10 flex-grow relative">
+              <p className="text-lg md:text-xl font-inter font-light text-foreground leading-relaxed mb-10 flex-grow relative">
                 <span className="absolute -top-4 -left-4 text-4xl text-primary/20 font-serif">"</span>
                 {t.content}
               </p>
               <div className="flex items-center gap-4 mt-auto">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-outline-variant bg-surface-container-high">
+                <div className="w-12 h-12 rounded-full overflow-hidden border border-border bg-popover">
                   <img src={`https://ui-avatars.com/api/?name=${t.name.split(' ').join('+')}&background=1c2b3c&color=d0bcff`} alt={t.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
-                  <h4 className="font-outfit font-bold text-white">{t.name}</h4>
-                  <p className="text-sm font-inter text-on-surface-variant font-light">{t.role}</p>
+                  <h4 className="font-outfit font-bold text-foreground">{t.name}</h4>
+                  <p className="text-sm font-inter text-muted-foreground font-light">{t.role}</p>
                 </div>
               </div>
             </SpotlightCard>

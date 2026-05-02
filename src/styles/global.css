@@ -5,25 +5,100 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 220 40% 98%;
+    --foreground: 224 30% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 30% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 30% 12%;
+    --primary: 263 70% 58%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 90%;
+    --secondary-foreground: 224 20% 25%;
+    --muted: 220 14% 95%;
+    --muted-foreground: 220 10% 46%;
+    --accent: 220 14% 95%;
+    --accent-foreground: 224 20% 25%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 263 70% 58%;
+    --radius: 0.75rem;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 224 20% 25%;
+    --sidebar-primary: 263 70% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 95%;
+    --sidebar-accent-foreground: 224 20% 25%;
+    --sidebar-border: 220 13% 91%;
+    --chart-1: 263 70% 58%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --glass-bg: 220 40% 98% / 0.6;
+    --glass-border: 0 0% 100% / 0.15;
+    --glass-shadow: inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+
+  .dark {
+    --background: 215 60% 7%;
+    --foreground: 214 70% 91%;
+    --card: 213 43% 12%;
+    --card-foreground: 214 70% 91%;
+    --popover: 212 36% 16%;
+    --popover-foreground: 214 70% 91%;
+    --primary: 263 100% 87%;
+    --primary-foreground: 271 100% 28%;
+    --secondary: 228 12% 38%;
+    --secondary-foreground: 227 14% 83%;
+    --muted: 212 30% 17%;
+    --muted-foreground: 269 14% 77%;
+    --accent: 212 30% 17%;
+    --accent-foreground: 214 70% 91%;
+    --destructive: 0 73% 85%;
+    --destructive-foreground: 0 100% 21%;
+    --border: 261 10% 30%;
+    --input: 261 10% 30%;
+    --ring: 263 100% 87%;
+    --sidebar-background: 213 43% 12%;
+    --sidebar-foreground: 214 70% 91%;
+    --sidebar-primary: 263 100% 87%;
+    --sidebar-primary-foreground: 271 100% 28%;
+    --sidebar-accent: 212 30% 17%;
+    --sidebar-accent-foreground: 214 70% 91%;
+    --sidebar-border: 261 10% 30%;
+    --chart-1: 263 100% 87%;
+    --chart-2: 160 60% 60%;
+    --chart-3: 30 80% 65%;
+    --chart-4: 280 65% 70%;
+    --chart-5: 340 75% 65%;
+    --glass-bg: 213 43% 12% / 0.5;
+    --glass-border: 0 0% 100% / 0.05;
+    --glass-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
   html {
     font-family: 'Outfit', sans-serif;
     scroll-behavior: smooth;
-    background-color: #051424;
-    color: #d4e4fa;
   }
 
   body {
+    @apply bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Custom Selection Color */
   ::selection {
-    background-color: rgba(208, 188, 255, 0.2);
-    color: #e9ddff;
+    @apply bg-primary/20 text-primary;
   }
 
-  /* Global Highlight Style */
   strong {
     @apply font-semibold text-primary;
   }
@@ -39,6 +114,9 @@
   }
   
   .glass-panel {
-    @apply bg-surface-container-low/50 backdrop-blur-xl border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)];
+    background-color: hsl(var(--glass-bg));
+    backdrop-filter: blur(24px);
+    border: 1px solid hsl(var(--glass-border));
+    box-shadow: var(--glass-shadow);
   }
 }

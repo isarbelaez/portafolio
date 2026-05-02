@@ -31,12 +31,17 @@ const cleanPath = currentPath.replace(baseUrl, '') || '/';
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(`${baseUrl}/og-image.png`, Astro.site || Astro.url).href} />
+    <script is:inline>
+      const theme = localStorage.getItem('theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.classList.toggle('dark', theme === 'dark');
+    </script>
   </head>
-  <body class="bg-surface text-on-surface min-h-[100dvh]">
+  <body class="bg-background text-foreground min-h-[100dvh]">
     <!-- Ambient glowing background common to all pages -->
     <div class="fixed inset-0 z-[-1] pointer-events-none opacity-20">
       <div class="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-primary/20 blur-[120px] rounded-full mix-blend-screen mix-blend-screen"></div>
-      <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary-container/10 blur-[100px] rounded-full mix-blend-screen mix-blend-screen"></div>
+      <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/10 blur-[100px] rounded-full mix-blend-screen mix-blend-screen"></div>
     </div>
 
     <!-- Sidebar Component (Client:load because it handles mobile drawer + active state path animations) -->

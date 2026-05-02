@@ -52,8 +52,8 @@ export default function Sidebar({ currentPath }: { currentPath: string }) {
                 key={item.path}
                 href={`${baseUrl}${item.path}`}
                 className={`relative group flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${isActive
-                    ? 'text-primary bg-primary/5'
-                    : 'text-on-surface hover:text-white hover:bg-white/5'
+                    ? 'text-sidebar-primary bg-sidebar-primary/10'
+                    : 'text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent'
                   }`}
               >
                 {isActive && (
@@ -76,13 +76,13 @@ export default function Sidebar({ currentPath }: { currentPath: string }) {
       <div className="space-y-6">
         <a
           href={`${baseUrl}/contacto`}
-          className="flex items-center justify-between w-full px-4 py-3 bg-white text-surface-container-highest rounded-lg font-space font-bold text-sm tracking-wide hover:bg-primary transition-colors hover:text-white group"
+          className="flex items-center justify-between w-full px-4 py-3 bg-foreground text-background rounded-lg font-space font-bold text-sm tracking-wide hover:bg-primary transition-colors hover:text-primary-foreground group"
         >
           Agendar llamada
           <TrendUp weight="bold" size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </a>
 
-        <div className="flex items-center gap-4 px-4 text-outline-variant">
+        <div className="flex items-center gap-4 px-4 text-sidebar-foreground/70">
           <a href="#" className="hover:text-primary transition-colors"><LinkedinLogo size={20} weight="fill" /></a>
           <a href="#" className="hover:text-primary transition-colors"><InstagramLogo size={20} weight="fill" /></a>
           <a href="#" className="hover:text-primary transition-colors"><WhatsappLogo size={20} weight="fill" /></a>
@@ -96,13 +96,13 @@ export default function Sidebar({ currentPath }: { currentPath: string }) {
       {/* Mobile Toggle */}
       <button
         onClick={() => setIsOpen(true)}
-        className="md:hidden fixed top-4 right-4 z-50 p-2 bg-surface-container border border-outline-variant rounded-lg text-white"
+        className="md:hidden fixed top-4 right-4 z-50 p-2 bg-background border border-border rounded-lg text-foreground"
       >
         <List size={24} />
       </button>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex fixed left-0 top-0 h-[100dvh] w-[260px] bg-surface-container-low border-r border-outline-variant z-40">
+      <aside className="hidden md:flex fixed left-0 top-0 h-[100dvh] w-[260px] bg-sidebar border-r border-sidebar-border z-40">
         <SidebarContent />
       </aside>
 
@@ -115,18 +115,18 @@ export default function Sidebar({ currentPath }: { currentPath: string }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="md:hidden fixed inset-0 z-40 bg-surface/80 backdrop-blur-sm"
+              className="md:hidden fixed inset-0 z-40 bg-background/80 backdrop-blur-sm"
             />
             <motion.aside
               initial={{ x: '-100%' }}
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="md:hidden fixed top-0 left-0 w-[280px] h-full bg-surface-container-low border-r border-outline-variant z-50 shadow-2xl"
+              className="md:hidden fixed top-0 left-0 w-[280px] h-full bg-sidebar border-r border-sidebar-border z-50 shadow-2xl"
             >
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-6 right-6 text-outline hover:text-white transition-colors"
+                className="absolute top-6 right-6 text-sidebar-foreground/70 hover:text-sidebar-foreground transition-colors"
               >
                 <X size={24} />
               </button>

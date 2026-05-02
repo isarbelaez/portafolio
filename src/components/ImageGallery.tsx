@@ -24,7 +24,7 @@ export function ImageGallery({ gallery }: ImageGalleryProps) {
         {gallery.map((img, index) => (
           <motion.div 
             key={index} 
-            className="relative group overflow-hidden rounded-2xl border border-brand-muted/20 bg-brand-cream/30 h-56"
+            className="relative group overflow-hidden rounded-2xl border border-border bg-muted/30 h-56"
             whileHover="hover"
           >
             <PhotoView src={img.src}>
@@ -55,7 +55,7 @@ export function ImageGallery({ gallery }: ImageGalleryProps) {
                 href={img.proposalLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm text-brand-espresso px-4 py-2 rounded-xl text-[10px] font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2 border border-brand-muted/20"
+                className="absolute bottom-4 right-4 bg-background/95 backdrop-blur-sm text-foreground px-4 py-2 rounded-xl text-[10px] font-bold shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2 border border-border/50"
                 onClick={(e) => e.stopPropagation()}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

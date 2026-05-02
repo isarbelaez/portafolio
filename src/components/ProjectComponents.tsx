@@ -31,15 +31,15 @@ export function ProjectCard({ p, onClick }: { p: Project; onClick: () => void })
       whileHover={{ y: -6, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="w-[300px] shrink-0 bg-gradient-to-br from-brand-cream to-white border border-brand-muted/30 rounded-2xl p-6 flex flex-col h-[280px] shadow-sm hover:shadow-xl hover:border-brand-beige transition-all duration-300 group"
+      className="w-[300px] shrink-0 bg-gradient-to-br from-card to-background border border-border/30 rounded-2xl p-6 flex flex-col h-[280px] shadow-sm hover:shadow-xl hover:border-border transition-all duration-300 group"
     >
-      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-white to-brand-cream text-brand-coffee flex items-center justify-center mb-4 border border-brand-muted/30 group-hover:border-brand-coffee/30 transition-colors">{p.icon}</div>
-      <h3 className="text-lg font-medium text-brand-espresso mb-2">{p.title}</h3>
-      <p className="text-brand-espresso/70 text-sm flex-grow line-clamp-3">{p.desc}</p>
+      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-background to-card text-primary flex items-center justify-center mb-4 border border-border/30 group-hover:border-primary/30 transition-colors">{p.icon}</div>
+      <h3 className="text-lg font-medium text-foreground mb-2">{p.title}</h3>
+      <p className="text-muted-foreground text-sm flex-grow line-clamp-3">{p.desc}</p>
       <button 
         onPointerDown={(e) => e.stopPropagation()} 
         onClick={onClick}
-        className="mt-4 flex items-center text-xs font-bold uppercase tracking-wider text-brand-coffee hover:text-brand-espresso transition-all"
+        className="mt-4 flex items-center text-xs font-bold uppercase tracking-wider text-primary hover:text-primary/80 transition-all"
       >
         Detalles <ChevronRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
       </button>
@@ -86,18 +86,18 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 10 }}
             transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-            className="bg-surface-container-high rounded-3xl max-w-2xl w-full p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] border border-white/10
-                       scrollbar-thin scrollbar-thumb-outline-variant scrollbar-track-transparent
+            className="bg-popover rounded-3xl max-w-2xl w-full p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] border border-white/10
+                       scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent
                        [&::-webkit-scrollbar]:w-2
                        [&::-webkit-scrollbar-track]:bg-transparent
-                       [&::-webkit-scrollbar-thumb]:bg-outline-variant
+                       [&::-webkit-scrollbar-thumb]:bg-border
                        [&::-webkit-scrollbar-thumb]:rounded-full
-                       hover:[&::-webkit-scrollbar-thumb]:bg-outline transition-colors" 
+                       hover:[&::-webkit-scrollbar-thumb]:bg-muted-foreground transition-colors" 
             onClick={e => e.stopPropagation()}
           >
             <button 
               onClick={onClose} 
-              className="absolute top-6 right-6 text-on-surface hover:text-white transition-all duration-300 z-10 p-2 hover:bg-surface-container-highest rounded-full"
+              className="absolute top-6 right-6 text-muted-foreground hover:text-foreground transition-all duration-300 z-10 p-2 hover:bg-accent rounded-full"
               aria-label="Cerrar"
             >
               <X size={20} />
@@ -108,7 +108,7 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
                 <div className="mb-6 w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
                   {project.icon}
                 </div>
-                <h2 className="text-3xl font-outfit font-bold text-white mb-3 leading-tight">{project.title}</h2>
+                <h2 className="text-3xl font-outfit font-bold text-foreground mb-3 leading-tight">{project.title}</h2>
                 <p className="text-primary/80 mb-6 text-lg font-inter font-light leading-relaxed">{project.fullDesc}</p>
 
                 {project.comoSeHizo && (
@@ -137,7 +137,7 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
                       href={project.proposalLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-space font-bold text-sm hover:bg-primary-container transition-all shadow-lg shadow-primary/20"
+                      className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-space font-bold text-sm hover:bg-primary/90 transition-all shadow-lg shadow-primary/20"
                     >
                       Ver Propuesta <Presentation size={18} />
                     </a>
@@ -147,7 +147,7 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
                       href={project.demoLink || project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-transparent text-white border border-outline-variant px-6 py-3 rounded-xl font-space font-bold text-sm hover:bg-surface-container-highest transition-all"
+                      className="inline-flex items-center gap-2 bg-transparent text-foreground border border-border px-6 py-3 rounded-xl font-space font-bold text-sm hover:bg-accent transition-all"
                     >
                       Ver Demo <ExternalLink size={18} />
                     </a>
@@ -175,7 +175,7 @@ export function ProjectModal({ project, onClose }: { project: Project | null; on
             </div>
 
             {project.embed && (
-              <div className="mt-8 rounded-2xl overflow-hidden border border-white/10 shadow-sm bg-surface-container-low">
+              <div className="mt-8 rounded-2xl overflow-hidden border border-border/10 shadow-sm bg-card">
                 <div dangerouslySetInnerHTML={{ __html: project.embed.replace('width="800"', 'width="100%"').replace('height="450"', 'height="400"') }} />
               </div>
             )}

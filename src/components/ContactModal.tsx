@@ -21,11 +21,11 @@ function ContactForm({ onClose }: { onClose: () => void }) {
         >
           <CheckCircle2 size={40} />
         </motion.div>
-        <h2 className="text-3xl font-bold text-brand-espresso mb-2">¡Mensaje Enviado!</h2>
-        <p className="text-brand-beige mb-8">Gracias por contactarme. Te responderé lo antes posible.</p>
+        <h2 className="text-3xl font-bold text-foreground mb-2">¡Mensaje Enviado!</h2>
+        <p className="text-muted-foreground mb-8">Gracias por contactarme. Te responderé lo antes posible.</p>
         <button 
           onClick={onClose}
-          className="bg-brand-coffee text-white px-8 py-3 rounded-xl font-bold hover:bg-brand-espresso transition-all shadow-xl shadow-brand-coffee/10"
+          className="bg-primary text-primary-foreground px-8 py-3 rounded-xl font-bold hover:bg-primary/90 transition-all shadow-xl shadow-primary/10"
         >
           Cerrar
         </button>
@@ -39,47 +39,47 @@ function ContactForm({ onClose }: { onClose: () => void }) {
       className="space-y-5"
     >
       <div className="space-y-1.5">
-        <label htmlFor="name" className="text-[10px] font-bold text-brand-espresso/60 uppercase tracking-widest ml-1">Nombre</label>
+        <label htmlFor="name" className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest ml-1">Nombre</label>
         <div className="relative">
-          <User className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-coffee/40" size={18} />
+          <User className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
           <input 
             id="name"
             type="text" 
             name="name"
             required
             placeholder="Tu nombre completo"
-            className="w-full bg-brand-cream/40 border border-brand-cream rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-brand-coffee/5 focus:border-brand-coffee transition-all text-brand-espresso"
+            className="w-full bg-background border border-border rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-foreground"
           />
         </div>
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="email" className="text-[10px] font-bold text-brand-espresso/60 uppercase tracking-widest ml-1">Correo Electrónico</label>
+        <label htmlFor="email" className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest ml-1">Correo Electrónico</label>
         <div className="relative">
-          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-coffee/40" size={18} />
+          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
           <input 
             id="email"
             type="email" 
             name="email"
             required
             placeholder="ejemplo@correo.com"
-            className="w-full bg-brand-cream/40 border border-brand-cream rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-brand-coffee/5 focus:border-brand-coffee transition-all text-brand-espresso"
+            className="w-full bg-background border border-border rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-foreground"
           />
         </div>
         <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-500 text-xs ml-1" />
       </div>
 
       <div className="space-y-1.5">
-        <label htmlFor="message" className="text-[10px] font-bold text-brand-espresso/60 uppercase tracking-widest ml-1">Mensaje</label>
+        <label htmlFor="message" className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest ml-1">Mensaje</label>
         <div className="relative">
-          <MessageSquare className="absolute left-4 top-4 text-brand-coffee/40" size={18} />
+          <MessageSquare className="absolute left-4 top-4 text-muted-foreground" size={18} />
           <textarea 
             id="message"
             name="message"
             required
             rows={4}
             placeholder="¿En qué puedo ayudarte?"
-            className="w-full bg-brand-cream/40 border border-brand-cream rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-brand-coffee/5 focus:border-brand-coffee transition-all resize-none text-brand-espresso"
+            className="w-full bg-background border border-border rounded-xl py-3 pl-12 pr-4 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all resize-none text-foreground"
           ></textarea>
         </div>
         <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-500 text-xs ml-1" />
@@ -88,7 +88,7 @@ function ContactForm({ onClose }: { onClose: () => void }) {
       <button 
         type="submit"
         disabled={state.submitting}
-        className="w-full bg-brand-coffee text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-brand-espresso transition-all shadow-xl shadow-brand-coffee/10 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all shadow-xl shadow-primary/10 mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {state.submitting ? 'Enviando...' : 'Enviar Mensaje'} <Send size={18} />
       </button>
@@ -111,22 +111,22 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             initial={{ scale: 0.95, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            className="bg-white rounded-3xl max-w-lg w-full p-8 relative shadow-2xl border border-brand-muted/20"
+            className="bg-card rounded-3xl max-w-lg w-full p-8 relative shadow-2xl border border-border"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 text-brand-beige hover:text-brand-espresso transition-all p-2 hover:bg-brand-cream rounded-full"
+              className="absolute top-6 right-6 text-muted-foreground hover:text-foreground transition-all p-2 hover:bg-muted rounded-full"
             >
               <X size={20} />
             </button>
 
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-brand-cream/50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-brand-muted/20 text-brand-coffee">
+              <div className="w-16 h-16 bg-muted/50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-border text-primary">
                 <Mail size={32} strokeWidth={1.5} />
               </div>
-              <h2 className="text-3xl font-bold text-brand-espresso mb-2">¡Hablemos!</h2>
-              <p className="text-brand-espresso/60">Envíame un mensaje y te responderé lo antes posible.</p>
+              <h2 className="text-3xl font-bold text-foreground mb-2">¡Hablemos!</h2>
+              <p className="text-muted-foreground">Envíame un mensaje y te responderé lo antes posible.</p>
             </div>
 
             <ContactForm onClose={onClose} />
