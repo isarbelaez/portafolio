@@ -44,7 +44,7 @@ const mockProjects = [
     demoLink: 'https://portafoliojordi.vercel.app/',
     comoSeHizo: 'Se diseñó una estructura simple y limpia, para mostrar los servicios del fotografo, con integraciones de WhatsApp y Google Sheet para facilitar la comunicación y gestión de leads.',
     programas: ['Astro', 'Vercel', 'Google Sheet', 'WhatsApp'],
-    gallery: [{ src: '/img/portafolio.png', title: 'Portafolio' }]
+    gallery: [{ src: 'public/img/portafolio.png', title: 'Portafolio' }]
   },
   {
     id: 4,

@@ -10,8 +10,13 @@ import {
   X,
   LinkedinLogo,
   InstagramLogo,
-  WhatsappLogo
+  WhatsappLogo,
+  Sun,
+  Moon,
+  Monitor
 } from '@phosphor-icons/react';
+
+type Theme = 'light' | 'dark' | 'system';
 
 const navItems = [
   { path: '/', label: 'Inicio', icon: House },
@@ -23,6 +28,38 @@ const navItems = [
 
 export default function Sidebar({ currentPath }: { currentPath: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] = useState<Theme>('system');
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (theme === 'system') {
+      localStorage.removeItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.classList.toggle('dark', systemDark);
+    } else {
+      localStorage.setItem('theme', theme);
+      root.classList.toggle('dark', theme === 'dark');
+    }
+  }, [theme]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (theme === 'system') {
+        const root = window.document.documentElement;
+        root.classList.toggle('dark', e.matches);
+      }
+    };
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [theme]);
 
   // Normalize path for trailing slashes
   const p = currentPath.endsWith('/') && currentPath.length > 1 ? currentPath.slice(0, -1) : currentPath;
@@ -86,6 +123,31 @@ export default function Sidebar({ currentPath }: { currentPath: string }) {
           <a href="#" className="hover:text-primary transition-colors"><LinkedinLogo size={20} weight="fill" /></a>
           <a href="#" className="hover:text-primary transition-colors"><InstagramLogo size={20} weight="fill" /></a>
           <a href="#" className="hover:text-primary transition-colors"><WhatsappLogo size={20} weight="fill" /></a>
+        </div>
+
+        {/* Theme Toggle */}
+        <div className="flex items-center gap-1 p-1 bg-background/50 border border-border rounded-lg mt-6 w-full">
+          <button
+            onClick={() => setTheme('light')}
+            className={`flex-1 flex justify-center py-2 rounded-md transition-colors ${theme === 'light' ? 'bg-sidebar-accent text-sidebar-foreground shadow-sm' : 'text-sidebar-foreground/50 hover:text-sidebar-foreground'}`}
+            title="Claro"
+          >
+            <Sun size={18} weight={theme === 'light' ? 'fill' : 'regular'} />
+          </button>
+          <button
+            onClick={() => setTheme('system')}
+            className={`flex-1 flex justify-center py-2 rounded-md transition-colors ${theme === 'system' ? 'bg-sidebar-accent text-sidebar-foreground shadow-sm' : 'text-sidebar-foreground/50 hover:text-sidebar-foreground'}`}
+            title="Sistema"
+          >
+            <Monitor size={18} weight={theme === 'system' ? 'fill' : 'regular'} />
+          </button>
+          <button
+            onClick={() => setTheme('dark')}
+            className={`flex-1 flex justify-center py-2 rounded-md transition-colors ${theme === 'dark' ? 'bg-sidebar-accent text-sidebar-foreground shadow-sm' : 'text-sidebar-foreground/50 hover:text-sidebar-foreground'}`}
+            title="Oscuro"
+          >
+            <Moon size={18} weight={theme === 'dark' ? 'fill' : 'regular'} />
+          </button>
         </div>
       </div>
     </div>

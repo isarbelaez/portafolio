@@ -25,7 +25,7 @@ export default function ContactoForm() {
           </div>
 
           <div className="space-y-6">
-            <a href="arbelaeztapias0108@gmail.com" className="flex items-center gap-4 group">
+            <a href="mailto:arbelaeztapias0108@gmail.com" className="flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-xl bg-popover border border-border flex items-center justify-center text-muted-foreground group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-colors">
                 <EnvelopeSimple size={24} />
               </div>
