@@ -20,32 +20,72 @@ export default function MarketingContent() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 md:py-24 space-y-24">
       {/* Header section */}
-      <section className="space-y-6">
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="space-y-6"
+      >
         <div className="inline-block px-4 py-2 border border-primary/20 bg-primary/5 text-primary rounded-full font-space font-medium text-sm tracking-wide uppercase">
           Marketing
         </div>
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold text-foreground tracking-tight max-w-3xl">
-          Estrategias probadas para ganar <span className="text-primary italic font-light">tracción</span> y escalar.
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold text-foreground tracking-tight max-w-3xl leading-[1.1]">
+          Estrategias probadas para ganar <span className="relative inline-block">
+            <span className="relative z-10 text-primary italic font-light">tracción</span>
+            <motion.span 
+              initial={{ width: 0 }}
+              whileInView={{ width: "100%" }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="absolute bottom-1 left-0 h-3 bg-primary/20 -rotate-1 origin-left"
+            />
+          </span> y escalar.
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground font-inter font-light max-w-2xl leading-relaxed">
           Diseñamos embudos multicanal apoyados de automatizaciones para reducir el costo de adquisición (CAC) y maximizar el LTV de tus clientes.
         </p>
-      </section>
+      </motion.section>
 
       {/* Bento Grid Metrics */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="glass-panel p-10 rounded-3xl col-span-1">
-          <h4 className="font-space font-semibold text-muted-foreground uppercase text-sm tracking-widest mb-4">Proyectos Completados</h4>
-          <span className="text-8xl font-bold font-space text-foreground tracking-tighter">29</span>
-        </div>
-        <div className="glass-panel p-10 rounded-3xl col-span-1 bg-gradient-to-br from-primary/10 to-transparent border-primary/20">
-          <h4 className="font-space font-semibold text-primary uppercase text-sm tracking-widest mb-4">Aumento en conversiones</h4>
-          <span className="text-8xl font-bold font-space text-foreground tracking-tighter">3.8<span className="text-5xl text-primary ml-1">x</span></span>
-        </div>
-        <div className="glass-panel p-10 rounded-3xl col-span-1">
-          <h4 className="font-space font-semibold text-muted-foreground uppercase text-sm tracking-widest mb-4">Clientes Satisfechos</h4>
-          <span className="text-8xl font-bold font-space text-foreground tracking-tighter">92<span className="text-5xl text-muted-foreground ml-1">%</span></span>
-        </div>
+        {[
+          { label: 'Proyectos Completados', value: '29', gradient: false },
+          { label: 'Aumento en conversiones', value: '3.8x', gradient: true },
+          { label: 'Clientes Satisfechos', value: '92%', gradient: false }
+        ].map((item, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            whileHover={{ y: -5 }}
+            className={`glass-panel p-10 rounded-3xl col-span-1 relative overflow-hidden group ${
+              item.gradient ? 'bg-gradient-to-br from-primary/10 to-transparent border-primary/30' : ''
+            }`}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity animate-gradient-shift" />
+            <h4 className={`font-space font-semibold uppercase text-xs tracking-widest mb-4 ${
+              item.gradient ? 'text-primary' : 'text-muted-foreground'
+            }`}>{item.label}</h4>
+            <div className="text-8xl font-bold font-space text-foreground tracking-tighter relative z-10">
+              {item.value.includes('.') ? (
+                <>
+                  {item.value.split('.')[0]}.
+                  <span className="text-6xl">{item.value.split('.')[1].replace('x', '')}</span>
+                  <span className="text-5xl text-primary ml-1">x</span>
+                </>
+              ) : (
+                <>
+                  {item.value.replace('%', '')}
+                  {item.value.includes('%') && <span className="text-5xl text-muted-foreground ml-1">%</span>}
+                </>
+              )}
+            </div>
+            
+            {/* Subtle border glow */}
+            <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+          </motion.div>
+        ))}
       </section>
 
       {/* Kinetic Marquee (Perpetual Animation) */}

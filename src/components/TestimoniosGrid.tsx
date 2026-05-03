@@ -84,69 +84,109 @@ function SpotlightCard({ children }: { children: React.ReactNode }) {
 }
 
 export default function TestimoniosGrid() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { type: "spring", stiffness: 200, damping: 20 }
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 md:py-24 space-y-16">
-      <div className="space-y-4">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="space-y-4"
+      >
         <div className="inline-block px-4 py-2 border border-primary/20 bg-primary/5 text-primary rounded-full font-space font-medium text-sm tracking-wide uppercase">
           Testimonios
         </div>
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold text-foreground tracking-tight max-w-2xl">
           El impacto de trabajar con un <span className="text-primary italic font-light">systema</span> eficiente.
         </h1>
-      </div>
+      </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-50px" }}
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start"
+      >
         {/* Anti-slop / Asymmetric grid handling */}
         <div className="space-y-6">
           {testimonials.filter((_, i) => i % 2 === 0).map((t, idx) => (
-            <SpotlightCard key={idx}>
-              <div className="mb-6">
-                <span className="px-3 py-1 bg-popover rounded-md text-xs font-space text-muted-foreground uppercase">
-                  {t.niche} / {t.resultado}
-                </span>
-              </div>
-              <p className="text-lg md:text-xl font-inter font-light text-foreground leading-relaxed mb-10 flex-grow relative">
-                <span className="absolute -top-4 -left-4 text-4xl text-primary/20 font-serif">"</span>
-                {t.content}
-              </p>
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-border bg-popover">
-                  <img src={`https://ui-avatars.com/api/?name=${t.name.split(' ').join('+')}&background=1c2b3c&color=d0bcff`} alt={t.name} className="w-full h-full object-cover" />
+            <motion.div key={idx} variants={itemVariants} whileHover={{ scale: 1.02 }} className="transition-transform duration-300">
+              <SpotlightCard>
+                <div className="mb-6">
+                  <span className="px-3 py-1 bg-popover rounded-md text-xs font-space text-muted-foreground uppercase">
+                    {t.niche} / {t.resultado}
+                  </span>
                 </div>
-                <div>
-                  <h4 className="font-outfit font-bold text-foreground">{t.name}</h4>
-                  <p className="text-sm font-inter text-muted-foreground font-light">{t.role}</p>
+                <p className="text-lg md:text-xl font-inter font-light text-foreground leading-relaxed mb-10 flex-grow relative">
+                  <span className="absolute -top-4 -left-4 text-4xl text-primary/20 font-serif">"</span>
+                  {t.content}
+                </p>
+                <div className="flex items-center gap-4 mt-auto">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-sm animate-pulse-glow" />
+                    <div className="w-12 h-12 rounded-full overflow-hidden border border-border bg-popover relative z-10">
+                      <img src={`https://ui-avatars.com/api/?name=${t.name.split(' ').join('+')}&background=1c2b3c&color=d0bcff`} alt={t.name} className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-outfit font-bold text-foreground">{t.name}</h4>
+                    <p className="text-sm font-inter text-muted-foreground font-light">{t.role}</p>
+                  </div>
                 </div>
-              </div>
-            </SpotlightCard>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </div>
         
         <div className="space-y-6 md:mt-12">
           {testimonials.filter((_, i) => i % 2 !== 0).map((t, idx) => (
-            <SpotlightCard key={idx}>
-               <div className="mb-6">
-                <span className="px-3 py-1 bg-popover rounded-md text-xs font-space text-muted-foreground uppercase">
-                  {t.niche} / {t.resultado}
-                </span>
-              </div>
-              <p className="text-lg md:text-xl font-inter font-light text-foreground leading-relaxed mb-10 flex-grow relative">
-                <span className="absolute -top-4 -left-4 text-4xl text-primary/20 font-serif">"</span>
-                {t.content}
-              </p>
-              <div className="flex items-center gap-4 mt-auto">
-                <div className="w-12 h-12 rounded-full overflow-hidden border border-border bg-popover">
-                  <img src={`https://ui-avatars.com/api/?name=${t.name.split(' ').join('+')}&background=1c2b3c&color=d0bcff`} alt={t.name} className="w-full h-full object-cover" />
+            <motion.div key={idx} variants={itemVariants} whileHover={{ scale: 1.02 }} className="transition-transform duration-300">
+              <SpotlightCard>
+                 <div className="mb-6">
+                  <span className="px-3 py-1 bg-popover rounded-md text-xs font-space text-muted-foreground uppercase">
+                    {t.niche} / {t.resultado}
+                  </span>
                 </div>
-                <div>
-                  <h4 className="font-outfit font-bold text-foreground">{t.name}</h4>
-                  <p className="text-sm font-inter text-muted-foreground font-light">{t.role}</p>
+                <p className="text-lg md:text-xl font-inter font-light text-foreground leading-relaxed mb-10 flex-grow relative">
+                  <span className="absolute -top-4 -left-4 text-4xl text-primary/20 font-serif">"</span>
+                  {t.content}
+                </p>
+                <div className="flex items-center gap-4 mt-auto">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-primary/20 rounded-full blur-sm animate-pulse-glow" />
+                    <div className="w-12 h-12 rounded-full overflow-hidden border border-border bg-popover relative z-10">
+                      <img src={`https://ui-avatars.com/api/?name=${t.name.split(' ').join('+')}&background=1c2b3c&color=d0bcff`} alt={t.name} className="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-outfit font-bold text-foreground">{t.name}</h4>
+                    <p className="text-sm font-inter text-muted-foreground font-light">{t.role}</p>
+                  </div>
                 </div>
-              </div>
-            </SpotlightCard>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }

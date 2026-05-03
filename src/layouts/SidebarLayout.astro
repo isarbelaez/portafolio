@@ -1,5 +1,6 @@
 ---
 import Sidebar from '../components/Sidebar';
+import { ScrollProgress, CustomCursor } from '../components/MicroInteractions';
 import '../styles/global.css';
 
 interface Props {
@@ -37,19 +38,31 @@ const cleanPath = currentPath.replace(baseUrl, '') || '/';
       document.documentElement.classList.toggle('dark', theme === 'dark');
     </script>
   </head>
-  <body class="bg-background text-foreground min-h-[100dvh]">
+  <body class="bg-background text-foreground min-h-[100dvh] bg-noise bg-grid-tech overflow-x-hidden selection:bg-primary/20 selection:text-primary">
+    <!-- Scroll Progress Bar -->
+    <ScrollProgress client:load />
+    
+    <!-- Custom Cursor -->
+    <CustomCursor client:load />
+
     <!-- Ambient glowing background common to all pages -->
-    <div class="fixed inset-0 z-[-1] pointer-events-none opacity-20">
-      <div class="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-primary/20 blur-[120px] rounded-full mix-blend-screen mix-blend-screen"></div>
-      <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/10 blur-[100px] rounded-full mix-blend-screen mix-blend-screen"></div>
+    <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+      <div class="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-primary/10 blur-[120px] rounded-full mix-blend-screen animate-pulse-glow"></div>
+      <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/5 blur-[100px] rounded-full mix-blend-screen animate-pulse-glow" style="animation-delay: -2s;"></div>
+      
+      <!-- Slow Animated Gradients -->
+      <div class="absolute inset-0 opacity-30">
+        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 blur-[150px] rounded-full animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full animate-float" style="animation-delay: -3s;"></div>
+      </div>
     </div>
 
-    <!-- Sidebar Component (Client:load because it handles mobile drawer + active state path animations) -->
+    <!-- Sidebar Component -->
     <Sidebar currentPath={cleanPath} client:load />
 
     <!-- Main Content Area -->
-    <div class="md:ml-[260px] min-h-[100dvh] relative transition-all duration-300">
+    <main class="md:ml-[260px] min-h-[100dvh] relative transition-all duration-300">
       <slot />
-    </div>
+    </main>
   </body>
 </html>

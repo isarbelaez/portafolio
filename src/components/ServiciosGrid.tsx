@@ -93,6 +93,31 @@ const mockProjects = [
 const mainFilters = ['Todos', 'E-commerce', 'Landing Page', 'Automatizaciones', 'Sitio Web', 'Rediseño Web', 'Chatbots'];
 const nicheFilters = ['Todos', 'Estética', 'Odontología', 'Glamping', 'Resort', 'Salud', 'Educación', 'Restaurantes'];
 
+const Counter = ({ value, duration = 2 }: { value: string, duration?: number }) => {
+  const [count, setCount] = useState(0);
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
+  const suffix = value.replace(/[0-9]/g, '');
+
+  React.useEffect(() => {
+    let start = 0;
+    const end = numericValue;
+    if (start === end) return;
+
+    let totalMiliseconds = duration * 1000;
+    let incrementTime = totalMiliseconds / end;
+
+    let timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start === end) clearInterval(timer);
+    }, incrementTime);
+
+    return () => clearInterval(timer);
+  }, [numericValue, duration]);
+
+  return <>{count}{suffix}</>;
+};
+
 export default function ServiciosGrid() {
   const [activeFilter, setActiveFilter] = useState('Todos');
   const [activeNiche, setActiveNiche] = useState('Todos');
@@ -108,6 +133,26 @@ export default function ServiciosGrid() {
     });
   }, [activeFilter, activeNiche, showNicheFilters]);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      scale: 1,
+      transition: { type: "spring", stiffness: 260, damping: 20 }
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-24 space-y-16">
       
@@ -115,34 +160,50 @@ export default function ServiciosGrid() {
       <div className="space-y-12">
         <div className="flex flex-col xl:flex-row gap-8 items-start xl:items-end justify-between">
           <div className="space-y-4">
-            <div className="inline-block px-4 py-2 border border-primary/20 bg-primary/5 text-primary rounded-full font-space font-medium text-sm tracking-wide uppercase">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="inline-block px-4 py-2 border border-primary/20 bg-primary/5 text-primary rounded-full font-space font-medium text-sm tracking-wide uppercase"
+            >
               Nuestros Servicios
-            </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold text-foreground tracking-tight">
+            </motion.div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl lg:text-6xl font-outfit font-bold text-foreground tracking-tight"
+            >
               Explora nuestros <br/>
               <span className="text-primary italic font-light pr-2">proyectos</span> en vivo
-            </h1>
+            </motion.h1>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 pb-2">
-            <div className="flex items-center gap-3 px-5 py-3 bg-card border border-primary/20 rounded-2xl shadow-[0_0_15px_rgba(208,188,255,0.05)]">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <CheckCircle size={24} weight="fill" />
-              </div>
-              <div>
-                <div className="text-foreground font-bold font-inter text-lg">98%</div>
-                <div className="text-muted-foreground text-xs font-space uppercase tracking-wider">Clientes Satisfechos</div>
-              </div>
-            </div>
-            <div className="flex items-center gap-3 px-5 py-3 bg-card border border-primary/20 rounded-2xl shadow-[0_0_15px_rgba(208,188,255,0.05)]">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <Users size={24} weight="fill" />
-              </div>
-              <div>
-                <div className="text-foreground font-bold font-inter text-lg">+100</div>
-                <div className="text-muted-foreground text-xs font-space uppercase tracking-wider">Prospectos Obtenidos</div>
-              </div>
-            </div>
+            {[
+              { label: 'Clientes Satisfechos', value: '98%', icon: CheckCircle },
+              { label: 'Prospectos Obtenidos', value: '+100', icon: Users }
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2 }}
+                className="flex items-center gap-3 px-5 py-3 bg-card border border-primary/20 rounded-2xl shadow-[0_0_15px_rgba(208,188,255,0.05)] relative overflow-hidden group"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity animate-gradient-shift" />
+                <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary relative z-10 group-hover:scale-110 transition-transform">
+                  <stat.icon size={24} weight="fill" />
+                </div>
+                <div className="relative z-10">
+                  <div className="text-foreground font-bold font-inter text-lg">
+                    <Counter value={stat.value} />
+                  </div>
+                  <div className="text-muted-foreground text-xs font-space uppercase tracking-wider">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
 
@@ -159,13 +220,20 @@ export default function ServiciosGrid() {
                     setActiveFilter(filter);
                     setActiveNiche('Todos');
                   }}
-                  className={`px-4 py-2 rounded-lg font-space text-sm font-medium transition-all duration-300 ${
+                  className={`relative px-4 py-2 rounded-lg font-space text-sm font-medium transition-all duration-300 ${
                     activeFilter === filter
-                      ? 'bg-primary text-primary-foreground shadow-lg shadow-primary/20'
+                      ? 'text-primary-foreground'
                       : 'border border-border text-muted-foreground hover:bg-accent hover:text-foreground'
                   }`}
                 >
-                  {filter}
+                  {activeFilter === filter && (
+                    <motion.div 
+                      layoutId="activeFilterBg"
+                      className="absolute inset-0 bg-primary rounded-lg shadow-lg shadow-primary/20"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <span className="relative z-10">{filter}</span>
                 </button>
               ))}
             </div>
@@ -187,13 +255,20 @@ export default function ServiciosGrid() {
                     <button
                       key={niche}
                       onClick={() => setActiveNiche(niche)}
-                      className={`px-4 py-2 rounded-lg font-space text-sm font-medium transition-all duration-300 ${
+                      className={`relative px-4 py-2 rounded-lg font-space text-sm font-medium transition-all duration-300 ${
                         activeNiche === niche
-                          ? 'bg-primary text-primary-foreground shadow-md shadow-primary/10'
+                          ? 'text-primary-foreground'
                           : 'border border-border/50 text-muted-foreground hover:bg-accent hover:text-foreground'
                       }`}
                     >
-                      {niche}
+                      {activeNiche === niche && (
+                        <motion.div 
+                          layoutId="activeNicheBg"
+                          className="absolute inset-0 bg-primary/80 rounded-lg shadow-md shadow-primary/10"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                      <span className="relative z-10">{niche}</span>
                     </button>
                   ))}
                 </div>
@@ -204,49 +279,66 @@ export default function ServiciosGrid() {
       </div>
 
       {/* Projects Grid */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <AnimatePresence>
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        layout 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        <AnimatePresence mode="popLayout">
           {filteredProjects.map((project) => (
             <motion.div
               layout
               layoutId={project.id.toString()}
               key={project.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+              variants={itemVariants}
+              exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
             >
-              {/* Wrapped the existing ProjectCard logic slightly tweaked for the design */}
               <div 
                 onClick={() => setSelectedProject(project)}
-                className="bg-card backdrop-blur-md border border-border p-5 rounded-3xl flex flex-col h-full hover:border-primary/50 transition-all duration-500 cursor-pointer group"
+                className="bg-card/50 backdrop-blur-md border border-border p-5 rounded-3xl flex flex-col h-full hover:border-primary/50 transition-all duration-500 cursor-pointer group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
               >
                 <div className="aspect-[4/3] w-full rounded-2xl overflow-hidden relative mb-5 bg-white/5">
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      className="bg-primary text-primary-foreground px-4 py-2 rounded-xl font-space font-bold text-sm flex items-center gap-2"
+                    >
+                      Ver proyecto
+                      <ArrowRight size={16} weight="bold" className="animate-float" style={{ animationDuration: '2s' }} />
+                    </motion.div>
+                  </div>
                   {project.gallery && project.gallery[0] ? (
-                    <img src={project.gallery[0].src} alt={project.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                    <img 
+                      src={project.gallery[0].src} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                      loading="lazy" 
+                    />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-primary/60 text-sm font-inter">Sin Imagen</div>
                   )}
                 </div>
                 
                 <div className="flex items-center justify-between mb-3 gap-2">
-                  <h3 className="text-lg font-inter font-semibold text-foreground tracking-tight truncate">{project.title}</h3>
-                  <div className="shrink-0 px-3 py-1 bg-primary/20 text-primary border border-primary/30 rounded-lg text-[11px] font-medium tracking-wide">
+                  <h3 className="text-lg font-inter font-semibold text-foreground tracking-tight truncate group-hover:text-primary transition-colors">{project.title}</h3>
+                  <div className="shrink-0 px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-lg text-[11px] font-medium tracking-wide">
                     {project.type}
                   </div>
                 </div>
 
-                <p className="text-primary/70 font-inter font-light text-[13px] line-clamp-2 mb-5">
+                <p className="text-muted-foreground font-inter font-light text-[13px] line-clamp-2 mb-5">
                   {project.desc}
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-6 mt-auto">
-                  <div className="px-3 py-1.5 bg-primary/10 text-primary border border-primary/20 rounded-lg text-[11px] font-space font-medium tracking-wide">
+                  <div className="px-3 py-1.5 bg-primary/5 text-primary/70 border border-primary/10 rounded-lg text-[11px] font-space font-medium tracking-wide group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                     {project.niche}
                   </div>
                 </div>
                 
-                <div className="flex items-center justify-between pt-4 border-t border-border">
+                <div className="flex items-center justify-between pt-4 border-t border-border/50">
                   {project.demoLink ? (
                     <button
                       onClick={(e) => {
@@ -258,7 +350,7 @@ export default function ServiciosGrid() {
                       Ver Demo
                     </button>
                   ) : <div />}
-                  <div className="w-8 h-8 rounded-full border border-primary/50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all">
+                  <div className="w-8 h-8 rounded-full border border-primary/30 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary group-hover:shadow-[0_0_15px_rgba(var(--primary),0.5)] transition-all">
                     <ArrowRight size={14} weight="bold" />
                   </div>
                 </div>

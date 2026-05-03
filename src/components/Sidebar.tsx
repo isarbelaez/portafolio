@@ -89,20 +89,25 @@ export default function Sidebar({ currentPath }: { currentPath: string }) {
                 key={item.path}
                 href={`${baseUrl}${item.path}`}
                 className={`relative group flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 ${isActive
-                    ? 'text-sidebar-primary bg-sidebar-primary/10'
-                    : 'text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent'
+                    ? 'text-sidebar-primary bg-sidebar-primary/10 shadow-[inset_0_0_20px_rgba(var(--primary),0.05)]'
+                    : 'text-sidebar-foreground hover:text-sidebar-accent-foreground hover:bg-sidebar-accent hover:translate-x-1'
                   }`}
               >
                 {isActive && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute left-0 w-1 h-6 bg-primary rounded-r-full"
+                    className="absolute left-0 w-1 h-6 bg-primary rounded-r-full shadow-[0_0_10px_rgba(var(--primary),0.8)]"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
                 )}
-                <Icon size={20} weight={isActive ? "fill" : "regular"} className="transition-all" />
+                <motion.div
+                  whileHover={{ rotate: 15, scale: 1.2 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <Icon size={20} weight={isActive ? "fill" : "regular"} className="transition-all" />
+                </motion.div>
                 <span className="font-space font-medium tracking-wide text-sm">{item.label}</span>
               </a>
             );
@@ -113,7 +118,7 @@ export default function Sidebar({ currentPath }: { currentPath: string }) {
       <div className="space-y-6">
         <a
           href={`${baseUrl}/contacto`}
-          className="flex items-center justify-between w-full px-4 py-3 bg-foreground text-background rounded-lg font-space font-bold text-sm tracking-wide hover:bg-primary transition-colors hover:text-primary-foreground group"
+          className="flex items-center justify-between w-full px-4 py-3 bg-foreground text-background rounded-lg font-space font-bold text-sm tracking-wide hover:bg-primary transition-all hover:text-primary-foreground group animate-breathing shadow-lg hover:shadow-primary/30"
         >
           Agendar llamada
           <TrendUp weight="bold" size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
