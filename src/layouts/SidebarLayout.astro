@@ -1,6 +1,7 @@
 ---
 import Sidebar from '../components/Sidebar';
 import { ScrollProgress, CustomCursor } from '../components/MicroInteractions';
+import { ViewTransitions } from 'astro:transitions';
 import '../styles/global.css';
 
 interface Props {
@@ -26,6 +27,12 @@ const cleanPath = currentPath.replace(baseUrl, '') || '/';
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <ViewTransitions />
+    
     <!-- SEO -->
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
@@ -36,29 +43,34 @@ const cleanPath = currentPath.replace(baseUrl, '') || '/';
       const theme = localStorage.getItem('theme') ||
         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
       document.documentElement.classList.toggle('dark', theme === 'dark');
+      
+      document.addEventListener('astro:after-swap', () => {
+        const theme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      });
     </script>
   </head>
-  <body class="bg-background text-foreground min-h-[100dvh] bg-noise bg-grid-tech overflow-x-hidden selection:bg-primary/20 selection:text-primary">
-    <!-- Scroll Progress Bar -->
-    <ScrollProgress client:load />
-    
-    <!-- Custom Cursor -->
-    <CustomCursor client:load />
+  <body class="bg-background text-foreground min-h-[100dvh] bg-grid-tech overflow-x-hidden selection:bg-primary/20 selection:text-primary">
+    {/* Non-critical elements load on idle */}
+    <ScrollProgress client:idle />
+    <CustomCursor client:idle />
 
     <!-- Ambient glowing background common to all pages -->
     <div class="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-      <div class="absolute top-[-10%] right-[-5%] w-[800px] h-[800px] bg-primary/10 blur-[120px] rounded-full mix-blend-screen animate-pulse-glow"></div>
-      <div class="absolute bottom-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/5 blur-[100px] rounded-full mix-blend-screen animate-pulse-glow" style="animation-delay: -2s;"></div>
+      {/* Central High-Tech Glow */}
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-primary/10 blur-[200px] rounded-full animate-pulse-glow"></div>
       
-      <!-- Slow Animated Gradients -->
-      <div class="absolute inset-0 opacity-30">
-        <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 blur-[150px] rounded-full animate-float"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full animate-float" style="animation-delay: -3s;"></div>
-      </div>
+      {/* Corner Glows */}
+      <div class="absolute top-[-5%] right-[-5%] w-[600px] h-[600px] bg-primary/5 blur-[100px] rounded-full mix-blend-screen animate-pulse-glow"></div>
+      <div class="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-primary/5 blur-[80px] rounded-full mix-blend-screen animate-pulse-glow" style="animation-delay: -2s;"></div>
+      
+      {/* Circuit Grid Pattern Background */}
+      <div class="absolute inset-0 opacity-[0.03]" 
+           style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10h80v80h-80z' fill='none' stroke='%23d0bcff' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='90' cy='90' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='10' cy='90' r='1' fill='%23d0bcff'/%3E%3Cpath d='M50 10v80M10 50h80' stroke='%23d0bcff' stroke-width='0.2'/%3E%3C/svg%3E&quot;)"></div>
     </div>
 
-    <!-- Sidebar Component -->
-    <Sidebar currentPath={cleanPath} client:load />
+    <!-- Sidebar Component - Load on idle to not block main content -->
+    <Sidebar currentPath={cleanPath} client:idle />
 
     <!-- Main Content Area -->
     <main class="md:ml-[260px] min-h-[100dvh] relative transition-all duration-300">

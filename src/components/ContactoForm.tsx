@@ -97,9 +97,10 @@ export default function ContactoForm() {
                 id="projectType" 
                 name="projectType" 
                 required 
+                defaultValue=""
                 className="bg-background border border-border/50 rounded-xl px-4 py-3 text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-colors appearance-none"
               >
-                <option value="" disabled selected>Selecciona una opción</option>
+                <option value="" disabled>Selecciona una opción</option>
                 <option value="Landing Page">Landing Page / Sitio Institucional</option>
                 <option value="E-commerce">E-commerce / Tienda Online</option>
                 <option value="Automatizacion">Automatización de Procesos (n8n, Make)</option>

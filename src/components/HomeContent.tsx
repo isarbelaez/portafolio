@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -98,39 +98,7 @@ export default function HomeContent() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 md:py-24 space-y-40">
       {/* Futuristic Hero Section */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center py-20 overflow-hidden">
-        
-        {/* Deep Purple Central Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-primary/10 blur-[200px] rounded-full animate-pulse-glow" />
-          
-          {/* Circuit Grid Pattern */}
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10h80v80h-80z' fill='none' stroke='%23d0bcff' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='90' cy='90' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='10' cy='90' r='1' fill='%23d0bcff'/%3E%3Cpath d='M50 10v80M10 50h80' stroke='%23d0bcff' stroke-width='0.2'/%3E%3C/svg%3E")` }} />
-          <div className="absolute inset-0 bg-grid-tech opacity-20" />
-        </div>
-
-        {/* Floating Data Nodes */}
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ 
-              x: Math.random() * 100 - 50 + "%", 
-              y: Math.random() * 100 - 50 + "%",
-              opacity: 0.1 
-            }}
-            animate={{ 
-              y: ["-15%", "15%", "-15%"],
-              opacity: [0.05, 0.2, 0.05]
-            }}
-            transition={{ 
-              duration: 15 + Math.random() * 10, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-            className="absolute w-1 h-1 bg-primary rounded-full blur-[1.5px] -z-10"
-          />
-        ))}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center py-20">
 
         <motion.div 
           variants={containerVariants}
@@ -161,27 +129,33 @@ export default function HomeContent() {
 
           {/* 3. Horizontal Glass Cards Grid */}
           <div className="relative pt-12">
-            {/* Data Wave Trail */}
-            <svg className="absolute top-1/2 left-0 w-full h-40 -translate-y-1/2 -z-10 pointer-events-none" viewBox="0 0 1000 100" preserveAspectRatio="none">
+            {/* Data Wave Trail - Full Width */}
+            <svg className="absolute top-1/2 left-1/2 w-screen h-[500px] -translate-x-1/2 -translate-y-1/2 -z-10 pointer-events-none opacity-50" viewBox="0 0 1920 100" preserveAspectRatio="none">
+              {/* Static Background Lines for 'Bucle Cerrado' feel */}
+              <path d="M0,50 Q480,0 960,50 T1920,50" fill="none" stroke="#d0bcff" strokeWidth="1" strokeOpacity="0.1" />
+              <path d="M0,50 Q480,100 960,50 T1920,50" fill="none" stroke="#d0bcff" strokeWidth="1" strokeOpacity="0.1" />
+              
               <motion.path
-                d="M0,50 Q250,0 500,50 T1000,50"
+                d="M0,50 Q480,0 960,50 T1920,50"
                 fill="none"
                 stroke="url(#wave-gradient)"
                 strokeWidth="6"
                 strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.6 }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                strokeDasharray="400 1520"
+                initial={{ strokeDashoffset: 1920, opacity: 0 }}
+                animate={{ strokeDashoffset: -1920, opacity: 0.6 }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
               />
               <motion.path
-                d="M0,50 Q250,100 500,50 T1000,50"
+                d="M0,50 Q480,100 960,50 T1920,50"
                 fill="none"
                 stroke="url(#wave-gradient)"
                 strokeWidth="2"
                 strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.3 }}
-                transition={{ duration: 6, repeat: Infinity, ease: "linear", delay: 1 }}
+                strokeDasharray="200 1720"
+                initial={{ strokeDashoffset: 1920, opacity: 0 }}
+                animate={{ strokeDashoffset: -1920, opacity: 0.3 }}
+                transition={{ duration: 7, repeat: Infinity, ease: "linear", delay: 1 }}
               />
               <defs>
                 <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">

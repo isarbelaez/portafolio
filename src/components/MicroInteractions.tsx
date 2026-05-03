@@ -27,25 +27,17 @@ export const CustomCursor = () => {
         x: e.clientX,
         y: e.clientY
       });
+      
+      // Event delegation for hover effect
+      const target = e.target as HTMLElement;
+      const isInteractable = !!target.closest('a, button, [role="button"]');
+      setIsHovering(isInteractable);
     };
 
-    const handleHover = () => setIsHovering(true);
-    const handleUnhover = () => setIsHovering(false);
-
-    window.addEventListener("mousemove", mouseMove);
-    
-    const interactables = document.querySelectorAll('a, button, [role="button"]');
-    interactables.forEach(el => {
-      el.addEventListener('mouseenter', handleHover);
-      el.addEventListener('mouseleave', handleUnhover);
-    });
+    window.addEventListener("mousemove", mouseMove, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", mouseMove);
-      interactables.forEach(el => {
-        el.removeEventListener('mouseenter', handleHover);
-        el.removeEventListener('mouseleave', handleUnhover);
-      });
     };
   }, []);
 
