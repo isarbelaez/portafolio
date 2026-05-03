@@ -73,13 +73,7 @@ export const CustomCursor = () => {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border border-primary rounded-full pointer-events-none z-[9999] hidden md:block mix-blend-difference"
-        variants={variants}
-        animate={isHovering ? "hover" : "default"}
-        transition={{ type: "spring", damping: 30, stiffness: 200, mass: 0.5 }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 w-1 h-1 bg-primary rounded-full pointer-events-none z-[9999] hidden md:block"
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-primary rounded-full pointer-events-none z-[9999] hidden md:block"
         variants={dotVariants}
         animate="default"
         transition={{ type: "spring", damping: 40, stiffness: 500, mass: 0.1 }}

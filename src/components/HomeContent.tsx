@@ -5,7 +5,11 @@ import {
   UserFocus, 
   Bag, 
   Lightbulb,
-  CaretDown
+  CaretDown,
+  CheckCircle,
+  Funnel,
+  TrendUp,
+  Users
 } from '@phosphor-icons/react';
 
 const InfoAccordion = ({ icon: Icon, title, description }: { icon: any, title: string, description: string | React.ReactNode }) => {
@@ -61,174 +65,262 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
 };
 
 export default function HomeContent() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 1, ease: [0.21, 0.47, 0.32, 0.98] }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 20 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0,
+      transition: { type: "spring", stiffness: 100, damping: 15 }
+    }
+  };
+
   return (
-    <div className="max-w-6xl mx-auto px-6 py-12 md:py-24 space-y-32">
-      {/* Hero Section */}
-      <section className="flex flex-col-reverse lg:flex-row items-center gap-16 lg:gap-8 justify-between relative">
-        <div className="flex-1 space-y-8">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block px-4 py-2 border border-primary/20 bg-primary/5 text-primary rounded-full font-space font-medium text-sm tracking-wide"
-          >
-            Hola, soy Isabella
-          </motion.div>
+    <div className="max-w-7xl mx-auto px-6 py-12 md:py-24 space-y-40">
+      {/* Futuristic Hero Section */}
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center py-20 overflow-hidden">
+        
+        {/* Deep Purple Central Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-primary/10 blur-[200px] rounded-full animate-pulse-glow" />
           
-          <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-bold font-outfit tracking-tighter leading-tight text-foreground max-w-2xl">
-              {["Diseñamos", "sistemas", "digitales", "que"].map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 + i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className="inline-block mr-3"
-                >
-                  {word}
-                </motion.span>
-              ))}
-              <motion.span
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7, ease: [0.21, 0.47, 0.32, 0.98] }}
-                className="inline-block relative"
-              >
-                <span className="text-primary italic font-light px-1 relative z-10 animate-gradient-shift bg-gradient-to-r from-primary via-purple-400 to-primary bg-clip-text text-transparent">
-                  convierten
-                </span>
-                <motion.span 
-                  animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.05, 1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute inset-0 bg-primary/20 blur-xl -z-10 rounded-full"
-                />
-              </motion.span>
-              <br />
-              {["negocios", "en", "resultados."].map((word, i) => (
-                <motion.span
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.9 + i * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
-                  className="inline-block mr-3"
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </h1>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
-              className="text-lg md:text-xl text-muted-foreground font-inter font-light max-w-xl leading-relaxed"
+          {/* Circuit Grid Pattern */}
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+               style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10h80v80h-80z' fill='none' stroke='%23d0bcff' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='90' cy='10' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='90' cy='90' r='1' fill='%23d0bcff'/%3E%3Ccircle cx='10' cy='90' r='1' fill='%23d0bcff'/%3E%3Cpath d='M50 10v80M10 50h80' stroke='%23d0bcff' stroke-width='0.2'/%3E%3C/svg%3E")` }} />
+          <div className="absolute inset-0 bg-grid-tech opacity-20" />
+        </div>
+
+        {/* Floating Data Nodes */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ 
+              x: Math.random() * 100 - 50 + "%", 
+              y: Math.random() * 100 - 50 + "%",
+              opacity: 0.1 
+            }}
+            animate={{ 
+              y: ["-15%", "15%", "-15%"],
+              opacity: [0.05, 0.2, 0.05]
+            }}
+            transition={{ 
+              duration: 15 + Math.random() * 10, 
+              repeat: Infinity, 
+              ease: "easeInOut" 
+            }}
+            className="absolute w-1 h-1 bg-primary rounded-full blur-[1.5px] -z-10"
+          />
+        ))}
+
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="relative z-10 space-y-16 max-w-5xl"
+        >
+          {/* 1. Centered Headline */}
+          <div className="space-y-6">
+            <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl lg:text-6xl font-bold font-outfit tracking-tighter leading-none text-white/90">
+              Diseñamos sistemas digitales que
+            </motion.h1>
+            <motion.h1 
+              variants={itemVariants} 
+              className="text-6xl md:text-8xl lg:text-9xl font-extrabold font-outfit tracking-tighter leading-[0.9] text-primary"
             >
-              Ayudamos a marcas a crecer con páginas web, automatizaciones y estrategias de marketing que generan impacto real.
-            </motion.p>
+              convierten visitas en clientes
+            </motion.h1>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="flex flex-wrap items-center gap-4 pt-4"
+          {/* 2. Subtitle */}
+          <motion.p 
+            variants={itemVariants}
+            className="text-lg md:text-xl text-muted-foreground font-inter font-light max-w-3xl mx-auto leading-relaxed"
           >
+            Ayudamos a marcas a crecer con páginas web, automatizaciones inteligentes y estrategias de marketing diseñadas para generar resultados reales y medibles.
+          </motion.p>
+
+          {/* 3. Horizontal Glass Cards Grid */}
+          <div className="relative pt-12">
+            {/* Data Wave Trail */}
+            <svg className="absolute top-1/2 left-0 w-full h-40 -translate-y-1/2 -z-10 pointer-events-none" viewBox="0 0 1000 100" preserveAspectRatio="none">
+              <motion.path
+                d="M0,50 Q250,0 500,50 T1000,50"
+                fill="none"
+                stroke="url(#wave-gradient)"
+                strokeWidth="6"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.6 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.path
+                d="M0,50 Q250,100 500,50 T1000,50"
+                fill="none"
+                stroke="url(#wave-gradient)"
+                strokeWidth="2"
+                strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 0.3 }}
+                transition={{ duration: 6, repeat: Infinity, ease: "linear", delay: 1 }}
+              />
+              <defs>
+                <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#d0bcff" />
+                  <stop offset="50%" stopColor="#ff00ff" />
+                  <stop offset="100%" stopColor="#d0bcff" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
+              {/* Card 1 */}
+              <motion.div 
+                variants={cardVariants}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="glass-panel p-8 rounded-3xl border border-primary/40 bg-popover/15 backdrop-blur-2xl relative overflow-hidden group shadow-[0_0_40px_rgba(var(--primary),0.15)]"
+              >
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/circuit-board.png')] opacity-10 pointer-events-none mix-blend-overlay" />
+                <div className="space-y-6 relative z-10">
+                  <div className="flex justify-center relative">
+                    <motion.div 
+                      animate={{ scale: [1, 1.1, 1], rotate: [0, 2, -2, 0] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                      className="text-primary relative"
+                    >
+                      <CheckCircle size={32} weight="fill" className="absolute -top-3 -right-3 z-20 drop-shadow-[0_0_15px_rgba(var(--primary),1)]" />
+                      <Funnel size={64} weight="duotone" className="opacity-90" />
+                    </motion.div>
+                  </div>
+                  <h3 className="text-xl font-space font-bold text-white uppercase tracking-tight leading-tight">Automatización de Procesos</h3>
+                  <div className="h-16 flex items-end justify-center gap-1.5 opacity-80">
+                    {[20, 35, 25, 45, 60, 50, 75, 90].map((h, i) => (
+                      <motion.div 
+                        key={i}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${h}%` }}
+                        transition={{ delay: 0.8 + i * 0.1, duration: 1.2 }}
+                        className="w-1.5 bg-primary/70 rounded-t-full shadow-[0_0_10px_rgba(var(--primary),0.3)]"
+                      />
+                    ))}
+                  </div>
+                </div>
+                {/* Glowing Border effect */}
+                <div className="absolute inset-0 rounded-3xl border border-primary/20 group-hover:border-primary group-hover:shadow-[inset_0_0_20px_rgba(var(--primary),0.3)] transition-all duration-500" />
+              </motion.div>
+
+              {/* Card 2 */}
+              <motion.div 
+                variants={cardVariants}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="glass-panel p-8 rounded-3xl border border-primary/40 bg-popover/15 backdrop-blur-2xl relative overflow-hidden group shadow-[0_0_40px_rgba(var(--primary),0.15)]"
+              >
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/circuit-board.png')] opacity-10 pointer-events-none mix-blend-overlay" />
+                <div className="space-y-6 relative z-10">
+                  <div className="flex justify-center relative">
+                    <motion.div 
+                      animate={{ rotate: [0, 5, -5, 0] }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                      className="text-primary relative"
+                    >
+                      <CheckCircle size={32} weight="fill" className="absolute -top-3 -right-3 z-20 drop-shadow-[0_0_15px_rgba(var(--primary),1)]" />
+                      <TrendUp size={64} weight="duotone" className="opacity-90" />
+                    </motion.div>
+                  </div>
+                  <h3 className="text-xl font-space font-bold text-white uppercase tracking-tight leading-tight">Sistemas para Escalar el Negocio</h3>
+                  <div className="flex justify-center gap-3 pt-4">
+                     {[0, 0.5, 1].map((delay, i) => (
+                       <motion.div 
+                         key={i}
+                         animate={{ 
+                           opacity: [0.2, 1, 0.2],
+                           scale: [1, 1.5, 1],
+                           boxShadow: ["0 0 0px rgba(var(--primary),0)", "0 0 10px rgba(var(--primary),0.8)", "0 0 0px rgba(var(--primary),0)"]
+                         }}
+                         transition={{ duration: 2, repeat: Infinity, delay }}
+                         className="w-2.5 h-2.5 rounded-full bg-primary"
+                       />
+                     ))}
+                  </div>
+                </div>
+                <div className="absolute inset-0 rounded-3xl border border-primary/20 group-hover:border-primary group-hover:shadow-[inset_0_0_20px_rgba(var(--primary),0.3)] transition-all duration-500" />
+              </motion.div>
+
+              {/* Card 3 */}
+              <motion.div 
+                variants={cardVariants}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="glass-panel p-8 rounded-3xl border border-primary/40 bg-popover/15 backdrop-blur-2xl relative overflow-hidden group shadow-[0_0_40px_rgba(var(--primary),0.15)]"
+              >
+                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/circuit-board.png')] opacity-10 pointer-events-none mix-blend-overlay" />
+                <div className="space-y-6 relative z-10">
+                  <div className="flex justify-center relative">
+                    <motion.div 
+                      animate={{ y: [0, -8, 0] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                      className="text-primary relative"
+                    >
+                      <CheckCircle size={32} weight="fill" className="absolute -top-3 -right-3 z-20 drop-shadow-[0_0_15px_rgba(var(--primary),1)]" />
+                      <Users size={64} weight="duotone" className="opacity-90" />
+                    </motion.div>
+                  </div>
+                  <h3 className="text-xl font-space font-bold text-white uppercase tracking-tight leading-tight">Captación Constante de Leads</h3>
+                  <div className="flex justify-center pt-4">
+                    <div className="px-5 py-2 rounded-xl bg-primary/20 border border-primary/40 text-[10px] text-primary font-bold tracking-widest shadow-[0_0_15px_rgba(var(--primary),0.2)]">
+                      OPTIMIZADO IA
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 rounded-3xl border border-primary/20 group-hover:border-primary group-hover:shadow-[inset_0_0_20px_rgba(var(--primary),0.3)] transition-all duration-500" />
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* CTA Buttons */}
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-6 pt-8">
             <motion.a 
               href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/contacto`} 
-              whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(var(--primary), 0.4)" }}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(var(--primary), 0.4)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-xl font-space font-bold transition-all shadow-lg shadow-primary/20 relative overflow-hidden group"
+              className="px-12 py-5 bg-primary text-primary-foreground rounded-2xl font-space font-bold transition-all shadow-xl shadow-primary/40 relative overflow-hidden group"
             >
               <span className="relative z-10">Agendar llamada</span>
-              <motion.div 
-                className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"
-              />
+              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </motion.a>
             <motion.a 
               href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/servicios`} 
               whileHover={{ scale: 1.05, backgroundColor: "rgba(var(--primary), 0.05)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 border border-border text-foreground rounded-xl font-space font-semibold transition-all hover:border-primary/50"
+              className="px-12 py-5 border border-primary/30 text-white rounded-2xl font-space font-semibold transition-all hover:border-primary group flex items-center gap-2 backdrop-blur-md"
             >
               Ver proyectos
+              <ArrowRight className="group-hover:translate-x-1 transition-transform" />
             </motion.a>
           </motion.div>
-        </div>
-        
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut", delay: 0.5 }}
-          className="flex-1 flex justify-center relative"
-        >
-          {/* AI Orb Element */}
-          <div className="relative w-72 h-72 lg:w-96 lg:h-96 group">
-            {/* Infinite rotating outer ring */}
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 rounded-full border border-dashed border-primary/20"
-            />
-            
-            {/* Particles orbiting */}
-            {[...Array(3)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{ 
-                  rotate: 360,
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{ 
-                  rotate: { duration: 10 + i * 5, repeat: Infinity, ease: "linear" },
-                  scale: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: i }
-                }}
-                className="absolute inset-0 pointer-events-none"
-              >
-                <div 
-                  className="absolute top-0 left-1/2 w-2 h-2 bg-primary rounded-full blur-[1px]"
-                  style={{ transform: `translateX(-50%) translateY(${-20 - i * 10}px)` }}
-                />
-              </motion.div>
-            ))}
-
-            {/* Main Orb Body */}
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="absolute inset-4 rounded-full bg-popover/30 backdrop-blur-2xl border border-white/20 flex items-center justify-center shadow-[0_0_50px_rgba(var(--primary),0.2)] z-10 overflow-hidden transition-shadow duration-500 group-hover:shadow-[0_0_80px_rgba(var(--primary),0.4)]"
-            >
-               <div className="w-full h-full bg-gradient-to-tr from-primary/10 via-transparent to-primary/10 flex items-center justify-center relative">
-                 <motion.span 
-                   animate={{ 
-                     opacity: [0.2, 0.5, 0.2],
-                     scale: [1, 1.1, 1]
-                   }}
-                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                   className="font-space font-bold text-7xl text-primary tracking-tighter filter blur-[2px] absolute"
-                 >
-                   IA
-                 </motion.span>
-                 <span className="font-space font-bold text-7xl text-primary tracking-tighter relative z-10">IA</span>
-                 
-                 {/* Inner glow */}
-                 <div className="absolute inset-0 bg-gradient-radial from-primary/20 to-transparent opacity-50" />
-               </div>
-            </motion.div>
-            
-            {/* Ambient background glows */}
-            <motion.div 
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 bg-primary/20 rounded-full blur-3xl -z-10"
-            />
-          </div>
         </motion.div>
       </section>
 
-      {/* Info Accordions Concept (Stacked Panels) */}
-      <section className="max-w-4xl space-y-6">
+      {/* Rest of the content */}
+      <section className="max-w-4xl mx-auto space-y-6 px-6">
         <InfoAccordion 
           icon={UserFocus} 
           title="¿Quién soy?" 
@@ -247,10 +339,10 @@ export default function HomeContent() {
       </section>
 
       {/* FAQ Section */}
-      <section className="max-w-4xl space-y-8">
-        <div className="space-y-2">
-          <h2 className="text-3xl font-outfit font-bold text-foreground tracking-tight">Preguntas clave</h2>
-          <p className="text-muted-foreground font-inter font-light">Resolvamos las dudas más comunes sobre nuestro proceso.</p>
+      <section className="max-w-4xl mx-auto space-y-12 px-6">
+        <div className="space-y-3 text-center">
+          <h2 className="text-4xl font-outfit font-bold text-foreground tracking-tight">Preguntas clave</h2>
+          <p className="text-lg text-muted-foreground font-inter font-light max-w-2xl mx-auto">Resolvamos las dudas más comunes sobre nuestro proceso.</p>
         </div>
         
         <div className="space-y-4">
