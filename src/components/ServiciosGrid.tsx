@@ -74,6 +74,20 @@ const mockProjects = [
     programas: ['Kommo', 'AI'],
     gallery: [{ src: '/img/komo.png', title: 'Pasteleria' }]
 },
+  {
+    id: 6,
+    title: 'Glamping Santurbán',
+    type: 'Sitio Web',
+    niche: 'Glamping',
+    desc: 'Sitio web con conexiones integradas a Google Calendar para reservaciones y Google Sheets para campañas de correos masivos.',
+    fullDesc: 'Desarrollo de un sitio web premium y automatizado para Glamping Santurbán. Implementación de una conexión bidireccional con Google Calendar para gestionar la disponibilidad y reservas en tiempo real, junto con Google Sheets para capturar leads y automatizar campañas de email marketing.',
+    resultados: ['Sincronización en tiempo real con Google Calendar', 'Automatización de emails masivos vía Google Sheets', 'Flujo de reservas 100% autónomo'],
+    icon: <Monitor size={24} weight="regular" />,
+    demoLink: 'https://glampingsanturban.com',
+    comoSeHizo: 'Se estructuró el sitio web utilizando Astro y Tailwind CSS para lograr velocidad y diseño inmersivo. La gestión de reservas se automatizó conectando directamente con Google Calendar para verificar y registrar fechas en tiempo real. Por otro lado, la información de los huéspedes se recopila de forma centralizada en Google Sheets, desde donde se disparan flujos automatizados para el envío masivo de correos informativos y promocionales.',
+    programas: ['Astro', 'Google Calendar', 'Google Sheets', 'Tailwind'],
+    gallery: [{ src: '/img/glamping.png', title: 'Glamping Santurbán' }]
+  },
 //   {
 //     id: 6,
 //     title: 'Bella Cucina',
@@ -332,10 +346,17 @@ export default function ServiciosGrid() {
                   {project.desc}
                 </p>
                 
-                <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+                <div className="flex items-center justify-between mb-6 mt-auto w-full">
                   <div className="px-3 py-1.5 bg-primary/5 text-primary/70 border border-primary/10 rounded-lg text-[11px] font-space font-medium tracking-wide group-hover:bg-primary/10 group-hover:text-primary transition-colors">
                     {project.niche}
                   </div>
+                  {project.title === 'Glamping Santurbán' && (
+                    <img 
+                      src="/img/logo.webp" 
+                      alt="Logo Empresa" 
+                      className="h-10 md:h-12 w-auto object-contain opacity-80 group-hover:opacity-100 hover:scale-110 transition-all duration-300 filter drop-shadow-[0_0_10px_rgba(208,188,255,0.2)]" 
+                    />
+                  )}
                 </div>
                 
                 <div className="flex items-center justify-between pt-4 border-t border-border/50">
